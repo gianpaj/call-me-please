@@ -10,22 +10,22 @@ export default function TabLayout() {
         tabBarActiveTintColor: 'black',
       }}>
       <Tabs.Screen
-        name="index"
+        name="call-now"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Call Now',
+          tabBarIcon: ({ color }) => <TabBarIcon name="phone" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
-              <HeaderButton />
+              <HeaderButton onPress={() => alert('yo')} />
             </Link>
           ),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="settings"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Settings',
+          tabBarIcon: ({ color }) => <TabBarIcon name="cog" color={color} />,
         }}
       />
     </Tabs>
