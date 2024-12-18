@@ -1,15 +1,15 @@
 import { Stack } from 'expo-router';
-import {Text} from 'react-native'
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
-import { ScreenContent } from '~/components/ScreenContent';
+import { Button } from '~/components/Button';
 
 export default function CallNow() {
   return (
     <>
       <Stack.Screen options={{ title: 'Call Now' }} />
       <View style={styles.container}>
-        <ScreenContent path="app/(tabs)/call-now.tsx" title="Call Now" />
+        <Button title="Call Me Now" onPress={() => console.log('Pressed')} />
+
       </View>
     </>
   );

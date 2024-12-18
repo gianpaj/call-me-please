@@ -24,8 +24,12 @@
   },
   "dependencies": {
     "@bacons/text-decoder": "^0.0.0",
+    "@config-plugins/react-native-webrtc": "^10.0.0",
     "@expo/metro-config": "^0.18.11",
     "@expo/vector-icons": "^14.0.0",
+    "@livekit/react-native": "^2.5.0",
+    "@livekit/react-native-expo-plugin": "^1.0.0",
+    "@livekit/react-native-webrtc": "^125.0.6",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@rn-primitives/switch": "^1.1.0",
     "@shopify/flash-list": "1.7.1",
