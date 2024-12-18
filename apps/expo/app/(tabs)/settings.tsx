@@ -1,17 +1,16 @@
 import { Stack } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ScreenContent } from '~/components/ScreenContent';
 
 export default function Home() {
   return (
-    <SafeAreaView className="bg-background">
-      <Stack.Screen options={{ title: 'Settings' }} />
+    <>
+      <Stack.Screen options={{ title: 'Tab Two' }} />
       <View style={styles.container}>
-        <ScreenContent path="app/(tabs)/settings.tsx" title="Settings" />
+        <ScreenContent path="app/(tabs)/two.tsx" title="Tab Two" />
       </View>
-    </SafeAreaView>
+    </>
   );
 }
 

@@ -16,7 +16,7 @@ export default function TabLayout() {
           tabBarActiveTintColor: 'black',
         }}>
         <Tabs.Screen
-          name="call-now"
+          name="index"
           options={{
             title: 'Call Now',
             tabBarIcon: ({ color }) => <TabBarIcon name="phone" color={color} />,
