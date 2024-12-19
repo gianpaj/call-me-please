@@ -7,6 +7,7 @@ createJiti(fileURLToPath(import.meta.url))("./src/env");
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
+  compress: true,
 
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
@@ -17,7 +18,6 @@ const config = {
     "@acme/validators",
   ],
 
-  /** We already do linting and typechecking as separate tasks in CI */
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
 };
