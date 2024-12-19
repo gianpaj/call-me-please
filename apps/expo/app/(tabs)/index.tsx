@@ -1,15 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Stack } from "expo-router";
-import {
-  AudioSession,
-  isTrackReference,
-  LiveKitRoom,
-  registerGlobals,
-  TrackReferenceOrPlaceholder,
-  useTracks,
-  VideoTrack,
-} from "@livekit/react-native";
+import { AudioSession, LiveKitRoom } from "@livekit/react-native";
 
 import { Button } from "~/components/Button";
 import { useConnection } from "~/hooks/use-connection";
@@ -18,22 +10,23 @@ export default function CallNow() {
   const { shouldConnect, connect, disconnect, wsUrl, token } = useConnection();
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
   // // Start the audio session first.
-  //  useEffect(() => {
-  //    const start = async () => {
-  //      await AudioSession.startAudioSession();
-  //    };
+  useEffect(() => {
+    const start = async () => {
+      await AudioSession.startAudioSession();
+    };
 
-  //    void start();
-  //    return () => {
-  //      void AudioSession.stopAudioSession();
-  //    };
-  //  }, []);
+    void start();
+    return () => {
+      void AudioSession.stopAudioSession();
+    };
+  }, []);
 
   const handleConnectionToggle = async () => {
     if (shouldConnect) {
       await disconnect();
     } else {
       setIsConnecting(true);
+
       try {
         await connect();
       } catch (error) {
@@ -61,7 +54,7 @@ export default function CallNow() {
         </LiveKitRoom>
         <Button
           disabled={isConnecting || shouldConnect}
-          title={shouldConnect ? "Disconnect" : "Call Me Now"}
+          title={isConnecting || shouldConnect ? "Connecting" : "Call Me Now"}
           onPress={handleConnectionToggle}
         />
       </View>
