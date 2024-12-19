@@ -1,4 +1,68 @@
-# create-t3-turbo
+# Call Me Please app
+
+A mobile application that allows users to schedule AI voice phone calls using React Native and Expo.
+
+## Overview
+
+Call Me Please is a mobile application that lets users schedule AI-powered voice calls. Users can select from various AI voices, set up recurring calls, and manage their call schedules through an intuitive interface.
+
+## Features
+
+- 📱 Schedule AI voice calls alarms
+- 🔄 Set recurring calls (daily, weekly, weekdays)
+- 🗣️ Choose from multiple AI voices
+- 🔔 Push notifications for scheduled calls
+- 👤 User authentication with Google and Apple
+- 💳 Credit system for call management
+- 🌍 Multi-language support
+
+## Tech Stack
+
+- **Frontend**: React Native with Expo
+- **AI Agent**: Python
+- **Backend**: Next.js
+- **Database**: Supabase
+- **State Management**: Zustand
+- **API Communication**: tRPC
+- **ORM**: Drizzle
+- **UI Components**: NativeWind
+- **Internationalization**: i18next (TBD)
+
+## Project Structure
+
+This is a Turborepo project with the following structure:
+
+- `/apps/expo` - React Native mobile app
+- `/apps/nextjs` - Next.js Landing Page and API server (tRPC)
+- `/apps/auth-proxy` - OAuth proxy
+- `/apps/webrtc-server` - Python LiveKit server
+- `/packages/api` - Shared API layer
+- `/packages/auth` - Authentication utilities
+- `/packages/ui` - Shared UI components
+- `/packages/db` - Database utilities
+
+![Live Kit Diagram](./live-kit-diagram.svg)
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+3. Set up environment variables
+4. Run the development server:
+   ```bash
+   pnpm dev
+   ```
+
+## Resources
+
+- [Live Kit - OpenAI Realtime API integration guide](https://docs.livekit.io/agents/openai/overview/)
+- <https://playground.livekit.io/>
+- https://github.com/livekit/client-sdk-react-native-expo-plugin/
+
+-- ORIGINAL README BELOW --
 
 > [!NOTE]
 >
