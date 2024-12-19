@@ -1,59 +1,58 @@
 {
-  "expo": {
-    "name": "call-me-please",
-    "slug": "call-me-please",
-    "version": "1.0.0",
-    "scheme": "call-me-please",
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-router",
-      [
-        "expo-dev-launcher",
-        {
-          "launchMode": "most-recent"
-        }
-      ],
-      "@livekit/react-native-expo-plugin",
-      "@config-plugins/react-native-webrtc"
+  "slug": "call-me-please",
+  "version": "1.0.0",
+  "scheme": "call-me-please",
+  "web": {
+    "bundler": "metro",
+    "output": "static",
+    "favicon": "./assets/favicon.png"
+  },
+  "plugins": [
+    "expo-router",
+    [
+      "expo-dev-launcher",
+      {
+        "launchMode": "most-recent"
+      }
     ],
-    "experiments": {
-      "typedRoutes": true,
+    "@livekit/react-native-expo-plugin",
+    "@config-plugins/react-native-webrtc"
+  ],
+  "experiments": {
+    "typedRoutes": true,
 
-      "tsconfigPaths": true
-    },
+    "tsconfigPaths": true
+  },
 
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
+  "orientation": "portrait",
+  "icon": "./assets/icon.png",
 
-    "userInterfaceStyle": "light",
+  "userInterfaceStyle": "light",
 
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
+  },
+  "assetBundlePatterns": ["**/*"],
+  "ios": {
+    "supportsTablet": true,
+    "infoPlist": {
+      "NSMicrophoneUsageDescription": "This app requires access to your microphone to receive a calls."
+    }
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/adaptive-icon.png",
       "backgroundColor": "#ffffff"
+    }
+  },
+  "extra": {
+    "router": {
+      "origin": false
     },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.gianpaj.call-me-please"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "8dd45d22-3cc9-4176-8f7a-c2f02a9120de"
-      }
+    "eas": {
+      "projectId": "8dd45d22-3cc9-4176-8f7a-c2f02a9120de"
     }
   }
 }

@@ -17,6 +17,10 @@ export const env = createEnv({
    */
   server: {
     POSTGRES_URL: z.string().url(),
+    LIVEKIT_API_KEY: z.string(),
+    LIVEKIT_API_SECRET: z.string(),
+    LIVEKIT_URL: z.string(),
+    OPENAI_API_KEY: z.string(),
   },
 
   /**

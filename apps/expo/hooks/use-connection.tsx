@@ -1,14 +1,15 @@
 import React, {
   createContext,
-  useState,
   useCallback,
   useContext,
   useEffect,
+  useState,
 } from "react";
+
 import type { LiveKitState } from "~/store/livekit-state";
 // import { usePlaygroundState } from "./use-playground-state";
 import { VoiceId } from "~/data/voices";
-import {defaultLiveKitState} from "~/store/livekit-state";
+import { defaultLiveKitState } from "~/store/livekit-state";
 
 export type ConnectFn = () => Promise<void>;
 
@@ -20,7 +21,7 @@ interface TokenGeneratorData {
   voice: VoiceId;
   disconnect: () => Promise<void>;
   connect: ConnectFn;
-};
+}
 
 const ConnectionContext = createContext<TokenGeneratorData | undefined>(
   undefined,
@@ -40,9 +41,9 @@ export const ConnectionProvider = ({
 
   // const { pgState, dispatch } = usePlaygroundState();
 
-
   const connect = async () => {
-    const response = await fetch("/api/token", {
+    // FIXME: in production
+    const response = await fetch("http://localhost:3000/api/livekit-token", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
