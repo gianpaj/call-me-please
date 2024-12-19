@@ -1,17 +1,42 @@
-import '../global.css';
+import "../global.css";
 
-import { Stack } from 'expo-router';
+import { Stack } from "expo-router";
+import {
+  // AudioSession,
+  // LiveKitRoom,
+  // useTracks,
+  // TrackReferenceOrPlaceholder,
+  // VideoTrack,
+  // isTrackReference,
+  registerGlobals,
+  setLogLevel,
+} from "@livekit/react-native";
+import { LogLevel } from "livekit-client";
+
+import { ConnectionProvider } from "~/hooks/use-connection";
+
+// import { setupCallService } from '../services/callService/callService';
+
+// setupErrorLogHandler();
+setLogLevel(LogLevel.debug);
+
+// Setup for CallService (keep alive in background) - TODO
+// setupCallService();
+
+registerGlobals();
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
+  initialRouteName: "(tabs)",
 };
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-    </Stack>
+    <ConnectionProvider>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+      </Stack>
+    </ConnectionProvider>
   );
 }
