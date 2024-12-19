@@ -21,6 +21,7 @@ export const env = createEnv({
     LIVEKIT_API_SECRET: z.string(),
     LIVEKIT_URL: z.string(),
     OPENAI_API_KEY: z.string(),
+    AUTH_SECRET: z.string(),
   },
 
   /**

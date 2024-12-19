@@ -67,6 +67,8 @@ This is a Turborepo project with the following structure:
 - [Live Kit - OpenAI Realtime API integration guide](https://docs.livekit.io/agents/openai/overview/)
 - <https://playground.livekit.io/>
 - https://github.com/livekit/client-sdk-react-native-expo-plugin/
+- Original repo1: <https://github.com/roninoss/create-expo-stack>
+- Original repo2: <https://github.com/t3-oss/create-t3-turbo>
 
 -- ORIGINAL README BELOW --
 
