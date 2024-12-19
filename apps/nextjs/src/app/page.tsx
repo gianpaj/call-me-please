@@ -1,31 +1,32 @@
-import { Suspense } from "react";
-
-import { api, HydrateClient } from "~/trpc/server";
-import { AuthShowcase } from "./_components/auth-showcase";
-import {
-  CreatePostForm,
-  PostCardSkeleton,
-  PostList,
-} from "./_components/posts";
-
-export const runtime = "edge";
+// eslint-disable @next/next/no-img-element */
+import TallyForm from "~/_components/tally-form";
 
 export default function HomePage() {
-  // You can await this here if you don't want to show Suspense fallback below
-  void api.post.all.prefetch();
-
   return (
-    <HydrateClient>
-      <main className="container h-screen py-16">
-        <div className="flex flex-col items-center justify-center gap-4">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            Create <span className="text-primary">T3</span> Turbo
-          </h1>
-          <AuthShowcase />
+    <main className="container h-screen py-16">
+      <div className="flex flex-col items-center justify-center gap-4">
+        <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
+          Call <span className="text-primary">Me</span> Now 📞🤖
+        </h1>
+        {/* <AuthShowcase /> */}
 
-          <CreatePostForm />
-          <div className="w-full max-w-2xl overflow-y-scroll">
-            <Suspense
+        <TallyForm />
+        <div className="w-full max-w-2xl overflow-y-scroll">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            <img
+              className="w-40 cursor-not-allowed"
+              fetchPriority="high"
+              src="/apple-store-logo.avif"
+              alt="Download Apple Store Logo"
+            />
+            <img
+              className="w-40 cursor-not-allowed"
+              fetchPriority="high"
+              src="/play-store-logo.avif"
+              alt="Download Apple Store Logo"
+            />
+          </div>
+          {/* <Suspense
               fallback={
                 <div className="flex w-full flex-col gap-4">
                   <PostCardSkeleton />
@@ -35,10 +36,9 @@ export default function HomePage() {
               }
             >
               <PostList />
-            </Suspense>
-          </div>
+            </Suspense> */}
         </div>
-      </main>
-    </HydrateClient>
+      </div>
+    </main>
   );
 }

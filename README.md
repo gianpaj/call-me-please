@@ -56,8 +56,8 @@ This is a Turborepo project with the following structure:
    ```bash
    pnpm install
    ```
-3. Set up environment variables
-4. Run the development server:
+3. Set up environment variables (See `.env.example` files)
+4. Run the development servers:
    ```bash
    pnpm dev
    ```
