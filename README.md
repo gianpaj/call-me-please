@@ -2,6 +2,12 @@
 
 A mobile application that allows users to schedule AI voice phone calls using React Native and Expo.
 
+## Follow the development journey on YouTube Playlist
+
+<a href="https://www.youtube.com/playlist?list=PLH-KKdKkxOQKy1VTd2_uBTWxN3JmgbGq0">
+  <img src="./youtube-thumbnail.avif" width="640" alt="@gianpaj - YouTube Playlist">
+</a>
+
 ## Overview
 
 Call Me Please is a mobile application that lets users schedule AI-powered voice calls. Users can select from various AI voices, set up recurring calls, and manage their call schedules through an intuitive interface.
