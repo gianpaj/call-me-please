@@ -1,7 +1,6 @@
 # TODO
 
 - select voice from a list of voices using <https://github.com/gorhom/react-native-bottom-sheet>
-- start webrtc python server using <https://github.com/livekit-examples/realtime-playground/blob/main/agent/main.py>
 - deploy on Vercel or Fly.io
 - show microphone level indicator when call is active
 - show a circle that get's larger or smaller when AI's voice speaks
