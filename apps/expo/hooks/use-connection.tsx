@@ -7,7 +7,6 @@ import React, {
 } from "react";
 
 import type { LiveKitState } from "~/store/livekit-state";
-// import { usePlaygroundState } from "./use-playground-state";
 import { VoiceId } from "~/data/voices";
 import { defaultLiveKitState } from "~/store/livekit-state";
 
@@ -19,7 +18,8 @@ interface TokenGeneratorData {
   token: string;
   defaultLiveKitState: LiveKitState;
   voice: VoiceId;
-  disconnect: () => Promise<void>;
+  setVoice: (voice: VoiceId) => void;
+  disconnect: () => void;
   connect: ConnectFn;
 }
 
@@ -73,6 +73,10 @@ export const ConnectionProvider = ({
     setConnectionDetails((prev) => ({ ...prev, shouldConnect: false }));
   }, []);
 
+  const setVoice = useCallback((voice: VoiceId) => {
+    setConnectionDetails((prev) => ({ ...prev, voice }));
+  }, []);
+
   return (
     <ConnectionContext.Provider
       value={{
@@ -83,6 +87,7 @@ export const ConnectionProvider = ({
         defaultLiveKitState,
         connect,
         disconnect,
+        setVoice,
       }}
     >
       {children}

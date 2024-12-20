@@ -1,0 +1,4 @@
+{
+  "venvPath": ".",
+  "venv": "./apps/webrtc-server/venv"
+}

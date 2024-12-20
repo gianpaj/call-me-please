@@ -1,5 +1,5 @@
 export enum VoiceId {
-  alloy = "alloy",
+  alloy = "alloy", // the default voice
   shimmer = "shimmer",
   echo = "echo",
   ash = "ash",

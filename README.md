@@ -14,13 +14,18 @@ Call Me Please is a mobile application that lets users schedule AI-powered voice
 
 ## Features
 
-- 📱 Schedule AI voice calls alarms
-- 🔄 Set recurring calls (daily, weekly, weekdays)
-- 🗣️ Choose from multiple AI voices
-- 🔔 Push notifications for scheduled calls
-- 👤 User authentication with Google and Apple
-- 💳 Credit system for call management
-- 🌍 Multi-language support
+- [ ] 🗣️ Choose from multiple AI voices
+- [ ] 📱 Schedule AI voice calls alarms
+- [ ] 🔔 Push notifications for scheduled calls
+- [ ] 👤 User authentication with Google, Apple, Email + verification, and Twilio SMS verification
+
+## Later
+
+Once I spend $100 on OpenAI, then add Stripe integration for top-up credits.
+
+- [ ] 💳 Credit system with Stripe integration (top-up)
+- [ ] 🔄 Set recurring calls (daily, weekly, weekdays)
+- [ ] 🌍 Multi-language support
 
 ## Tech Stack
 

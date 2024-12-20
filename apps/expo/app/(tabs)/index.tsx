@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Stack } from "expo-router";
 import { AudioSession, LiveKitRoom } from "@livekit/react-native";
 
 import { Button } from "~/components/Button";
 import { useConnection } from "~/hooks/use-connection";
+import { useSessionStore } from "~/store/store";
 
 export default function CallNow() {
   const { shouldConnect, connect, disconnect, wsUrl, token } = useConnection();
@@ -23,7 +24,7 @@ export default function CallNow() {
 
   const handleConnectionToggle = async () => {
     if (shouldConnect) {
-      await disconnect();
+      disconnect();
     } else {
       setIsConnecting(true);
 
@@ -53,9 +54,22 @@ export default function CallNow() {
           {/* <RoomView /> */}
         </LiveKitRoom>
         <Button
-          disabled={isConnecting || shouldConnect}
-          title={isConnecting || shouldConnect ? "Connecting" : "Call Me Now"}
+          disabled={isConnecting}
+          title={
+            // Button text logic:
+            // - If not connecting and should be connected: "Connected"
+            // - If currently connecting or should be connected: "Connecting"
+            // - Otherwise (default state): "Call Me Now"
+            !isConnecting && shouldConnect
+              ? "Connected"
+              : isConnecting || shouldConnect
+                ? "Connecting"
+                : "Call Me Now"
+          }
           onPress={handleConnectionToggle}
+          className={
+            isConnecting || shouldConnect ? "bg-indigo-400" : "bg-indigo-500"
+          }
         />
       </View>
     </>
