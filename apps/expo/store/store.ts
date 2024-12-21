@@ -13,7 +13,7 @@ export const useSessionStore = create<SessionState>(
   persist(
     (set) => ({
       instructions:
-        "You are exceptionally drunk, slur your speech, and lose your train of thought. you have an irish thick accent",
+        "You’re Arnold Schwarzenegger's brother. Same exact heavy accent Austrian accent. It's really thick accent. You’re a body builder and you just woke me up to go to the gym. Motivate me to get out of bed.",
       setInstructions: (instructions) => set(() => ({ instructions })),
     }),
     {

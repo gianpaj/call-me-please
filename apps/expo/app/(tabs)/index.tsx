@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { ScrollView, Text, TextInput } from "react-native";
 import { Stack } from "expo-router";
 import { AudioSession, LiveKitRoom } from "@livekit/react-native";
 
@@ -41,19 +41,23 @@ export default function CallNow() {
 
   return (
     <>
+      <LiveKitRoom
+        serverUrl={wsUrl}
+        token={token}
+        connect={shouldConnect}
+        options={{
+          adaptiveStream: { pixelDensity: "screen" },
+          // publishDefaults: {
+          //   stopMicTrackOnMute: true,
+          // },
+        }}
+        audio={true}
+      />
       <Stack.Screen options={{ title: "Call Now" }} />
-      <View style={styles.container}>
-        <LiveKitRoom
-          serverUrl={wsUrl}
-          token={token}
-          connect={shouldConnect}
-          options={{
-            adaptiveStream: { pixelDensity: "screen" },
-          }}
-          audio={true}
-        >
-          {/* <RoomView /> */}
-        </LiveKitRoom>
+      <ScrollView
+        contentContainerClassName="flex-1 p-7 justify-center"
+        keyboardDismissMode="on-drag"
+      >
         <Button
           disabled={isConnecting}
           title={
@@ -72,18 +76,15 @@ export default function CallNow() {
             isConnecting || shouldConnect ? "bg-indigo-400" : "bg-indigo-500"
           }
         />
-        <TextInput multiline onChangeText={(text) => setInstructions(text)}>
+        <Text className="mt-4 text-lg font-bold">Instructions:</Text>
+        <TextInput
+          editable={!(isConnecting || shouldConnect)}
+          multiline
+          onChangeText={(text) => setInstructions(text)}
+        >
           {instructions}
         </TextInput>
-      </View>
+      </ScrollView>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-    justifyContent: "center",
-  },
-});
