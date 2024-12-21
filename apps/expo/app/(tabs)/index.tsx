@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { ScrollView, Text, TextInput } from "react-native";
+import * as Notifications from "expo-notifications";
+import { SchedulableTriggerInputTypes } from "expo-notifications";
 import { Stack } from "expo-router";
 import { AudioSession, LiveKitRoom } from "@livekit/react-native";
 
@@ -38,6 +40,42 @@ export default function CallNow() {
     }
   };
   const { instructions, setInstructions } = useSessionStore();
+
+  const handleScheduleCall = async () => {
+    await Notifications.requestPermissionsAsync({
+      ios: {
+        allowAlert: true,
+        allowBadge: true,
+        allowSound: true,
+      },
+    });
+    // First, set the handler that will cause the notification
+    // to show the alert
+    Notifications.setNotificationHandler({
+      // eslint-disable-next-line @typescript-eslint/require-await
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: false,
+      }),
+      handleSuccess: () => console.log("Notification handler set"),
+      handleError: (error) =>
+        console.error("Error setting notification handler", error),
+    });
+
+    // Second, call scheduleNotificationAsync()
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "Look at that notification",
+        body: "I'm so proud of myself!",
+      },
+      trigger: {
+        seconds: 3,
+        type: SchedulableTriggerInputTypes.TIME_INTERVAL,
+      },
+      // trigger: { seconds: 60, type: SchedulableTriggerInputTypes.TIME_INTERVAL },
+    });
+  };
 
   return (
     <>
@@ -84,6 +122,12 @@ export default function CallNow() {
         >
           {instructions}
         </TextInput>
+        <Button
+          title="Schedule Call"
+          onPress={handleScheduleCall}
+          style={{ width: "50%" }}
+          className="mt-4 bg-pink-600 p-2"
+        />
       </ScrollView>
     </>
   );
