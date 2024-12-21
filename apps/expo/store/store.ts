@@ -1,15 +1,24 @@
-import { create } from 'zustand';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-export interface BearState {
-  bears: number;
-  increasePopulation: () => void;
-  removeAllBears: () => void;
-  updateBears: (newBears: number) => void;
+export interface SessionState {
+  instructions: string;
+  setInstructions: (instructions: string) => void;
 }
 
-export const useStore = create<BearState>((set) => ({
-  bears: 0,
-  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-  removeAllBears: () => set({ bears: 0 }),
-  updateBears: (newBears) => set({ bears: newBears }),
-}));
+export const useSessionStore = create<SessionState>(
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  persist(
+    (set) => ({
+      instructions:
+        "You are exceptionally drunk, slur your speech, and lose your train of thought. you have an irish thick accent",
+      setInstructions: (instructions) => set(() => ({ instructions })),
+    }),
+    {
+      name: "session-storage",
+      storage: createJSONStorage(() => AsyncStorage),
+    },
+  ),
+);

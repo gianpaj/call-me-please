@@ -1,6 +1,8 @@
 # TODO
 
 - select voice from a list of voices using <https://github.com/gorhom/react-native-bottom-sheet>
+- select language from a list of languages
+- select an accent from a list
 - deploy on Vercel or Fly.io
 - show microphone level indicator when call is active
 - show a circle that get's larger or smaller when AI's voice speaks

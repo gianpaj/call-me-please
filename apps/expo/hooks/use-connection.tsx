@@ -1,14 +1,9 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useCallback, useContext, useState } from "react";
 
 import type { LiveKitState } from "~/store/livekit-state";
 import { VoiceId } from "~/data/voices";
 import { defaultLiveKitState } from "~/store/livekit-state";
+import { useSessionStore } from "~/store/store";
 
 export type ConnectFn = () => Promise<void>;
 
@@ -39,7 +34,7 @@ export const ConnectionProvider = ({
     voice: VoiceId;
   }>({ wsUrl: "", token: "", shouldConnect: false, voice: VoiceId.alloy });
 
-  // const { pgState, dispatch } = usePlaygroundState();
+  const instructions = useSessionStore((state) => state.instructions);
 
   const connect = async () => {
     // FIXME: in production
@@ -48,7 +43,7 @@ export const ConnectionProvider = ({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(defaultLiveKitState),
+      body: JSON.stringify({ instructions, ...defaultLiveKitState }),
     });
 
     if (!response.ok) {

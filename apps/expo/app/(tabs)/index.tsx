@@ -37,6 +37,7 @@ export default function CallNow() {
       }
     }
   };
+  const { instructions, setInstructions } = useSessionStore();
 
   return (
     <>
@@ -57,11 +58,11 @@ export default function CallNow() {
           disabled={isConnecting}
           title={
             // Button text logic:
-            // - If not connecting and should be connected: "Connected"
+            // - If not connecting and should be connected: "Disconnect"
             // - If currently connecting or should be connected: "Connecting"
             // - Otherwise (default state): "Call Me Now"
             !isConnecting && shouldConnect
-              ? "Connected"
+              ? "Disconnect"
               : isConnecting || shouldConnect
                 ? "Connecting"
                 : "Call Me Now"
@@ -71,6 +72,9 @@ export default function CallNow() {
             isConnecting || shouldConnect ? "bg-indigo-400" : "bg-indigo-500"
           }
         />
+        <TextInput multiline onChangeText={(text) => setInstructions(text)}>
+          {instructions}
+        </TextInput>
       </View>
     </>
   );
