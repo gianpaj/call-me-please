@@ -6,7 +6,7 @@ export default function HomePage() {
     <main className="container h-screen py-16">
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-          Call <span className="text-primary">Me</span> Now 📞🤖
+          Wake<span className="text-primary">Call</span> app 📞🤖
         </h1>
         {/* <AuthShowcase /> */}
 
@@ -23,7 +23,7 @@ export default function HomePage() {
               className="w-40 cursor-not-allowed"
               fetchPriority="high"
               src="/play-store-logo.avif"
-              alt="Download Apple Store Logo"
+              alt="Download Google Play Store Logo"
             />
           </div>
           {/* <Suspense
