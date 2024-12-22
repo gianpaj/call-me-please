@@ -1,5 +1,11 @@
 # TODO
 
+## To Fix
+
+- fix iOS expo-notification sound
+
+## To Implement
+
 - select voice from a list of voices using <https://github.com/gorhom/react-native-bottom-sheet>
 - select language from a list of languages
 - select an accent from a list
@@ -13,3 +19,4 @@
 ## nice to have
 
 - use `class-variance-authority` for Button component and similar
+- Snooze button in the notification

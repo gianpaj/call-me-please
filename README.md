@@ -26,6 +26,7 @@ Once I spend $100 on OpenAI, then add Stripe integration for top-up credits.
 - [ ] 💳 Credit system with Stripe integration (top-up)
 - [ ] 🔄 Set recurring calls (daily, weekly, weekdays)
 - [ ] 🌍 Multi-language support
+- [ ] End-to-end testing with Maestro <https://maestro.mobile.dev/platform-support/react-native>
 
 ## Tech Stack
 
