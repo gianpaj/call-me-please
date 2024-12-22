@@ -1,5 +1,5 @@
 livekit>=0.18.3
 livekit-protocol
-livekit-agents>=0.12.2
-livekit-plugins-openai>=0.10.10
+livekit-agents>=0.12.3
+livekit-plugins-openai>=0.10.11
 python-dotenv==1.0.1

@@ -109,9 +109,13 @@ def run_multimodal_agent(ctx: JobContext, participant: rtc.Participant):
         instructions=config.instructions,
         voice=config.voice,
         temperature=config.temperature,
+        model="gpt-4o-mini-realtime-preview",
         max_response_output_tokens=config.max_response_output_tokens,
         modalities=config.modalities,
-        turn_detection=config.turn_detection,
+        # turn_detection=config.turn_detection,
+        turn_detection=openai.realtime.ServerVadOptions(
+            threshold=0.6, prefix_padding_ms=200, silence_duration_ms=500
+        ),
     )
     assistant = MultimodalAgent(model=model)
     assistant.start(ctx.room)
