@@ -42,13 +42,25 @@ export default function CallNow() {
   const { instructions, setInstructions } = useSessionStore();
 
   const handleScheduleCall = async () => {
-    await Notifications.requestPermissionsAsync({
-      ios: {
-        allowAlert: true,
-        allowBadge: true,
-        allowSound: true,
-      },
-    });
+    try {
+      await Notifications.requestPermissionsAsync({
+        ios: {
+          allowAlert: true,
+          allowBadge: true,
+          allowSound: true,
+        },
+        android: {
+          allowAlert: true,
+          allowBadge: true,
+          allowSound: true,
+        },
+      });
+    } catch (error) {
+      // TO TEST: on a newly installed app, deny permissions
+      console.error("Error requesting permissions", error);
+      alert("Error requesting permissions. Please try again.");
+      return;
+    }
     // First, set the handler that will cause the notification
     // to show the alert
     Notifications.setNotificationHandler({
@@ -58,20 +70,31 @@ export default function CallNow() {
         shouldPlaySound: true,
         shouldSetBadge: false,
       }),
-      handleSuccess: () => console.log("Notification handler set"),
+      handleSuccess: (notificationI) =>
+        console.log("Notification handler set", notificationI),
       handleError: (error) =>
         console.error("Error setting notification handler", error),
     });
 
-    // Second, call scheduleNotificationAsync()
+    // Prepare the notification channel - for Android 8.0+
+    await Notifications.setNotificationChannelAsync("new_alarm", {
+      name: "WakeCall alarms",
+      importance: Notifications.AndroidImportance.HIGH,
+      sound: "./assets/notification_sound.wav",
+    });
+
+    const notification_title = "Good morning";
+
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: "Look at that notification",
-        body: "I'm so proud of myself!",
+        title: notification_title,
+        body: "I'm proud of you. Now, let's get up and get going!",
+        // sound: "mySoundFile.wav",
       },
       trigger: {
         seconds: 3,
         type: SchedulableTriggerInputTypes.TIME_INTERVAL,
+        channelId: "new_alarm",
       },
       // trigger: { seconds: 60, type: SchedulableTriggerInputTypes.TIME_INTERVAL },
     });
@@ -110,9 +133,8 @@ export default function CallNow() {
                 : "Call Me Now"
           }
           onPress={handleConnectionToggle}
-          className={
-            isConnecting || shouldConnect ? "bg-indigo-400" : "bg-indigo-500"
-          }
+          variant="primary"
+          className={isConnecting || shouldConnect ? "bg-indigo-400" : ""}
         />
         <Text className="mt-4 text-lg font-bold">Instructions:</Text>
         <TextInput
@@ -123,10 +145,11 @@ export default function CallNow() {
           {instructions}
         </TextInput>
         <Button
-          title="Schedule Call"
+          title="Schedule WakeCall"
           onPress={handleScheduleCall}
-          style={{ width: "50%" }}
-          className="mt-4 bg-pink-600 p-2"
+          style={{ width: "60%" }}
+          className="mx-auto mt-4 p-2"
+          variant="secondary"
         />
       </ScrollView>
     </>

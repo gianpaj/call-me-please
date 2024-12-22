@@ -16,7 +16,17 @@
       }
     ],
     "@livekit/react-native-expo-plugin",
-    "@config-plugins/react-native-webrtc"
+    "@config-plugins/react-native-webrtc",
+    [
+      "expo-notifications",
+      {
+        "icon": "./assets/notification_icon.png",
+        "color": "#ffffff",
+        "defaultChannel": "default",
+        "sounds": ["./assets/notification_sound.wav"],
+        "enableBackgroundRemoteNotifications": false
+      }
+    ]
   ],
   "experiments": {
     "typedRoutes": true,
