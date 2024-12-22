@@ -1,22 +1,41 @@
-import { forwardRef } from 'react';
-import { Text, TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
+import type { TouchableOpacityProps, View } from "react-native";
+import { forwardRef } from "react";
+import { Text, TouchableOpacity } from "react-native";
 
 type ButtonProps = {
   title: string;
+  variant?: "primary" | "secondary" | "danger";
+  // size?: "small" | "medium" | "large";
+  textClassName?: string;
 } & TouchableOpacityProps;
 
-export const Button = forwardRef<View, ButtonProps>(({ title, ...touchableProps }, ref) => {
-  return (
-    <TouchableOpacity
-      ref={ref}
-      {...touchableProps}
-      className={`${styles.button} ${touchableProps.className}`}>
-      <Text className={styles.buttonText}>{title}</Text>
-    </TouchableOpacity>
-  );
-});
-
-const styles = {
-  button: 'items-center bg-indigo-500 rounded-[28px] shadow-md p-4',
-  buttonText: 'text-white text-lg font-semibold text-center',
+const variantStyles = {
+  default: "items-center  rounded-[28px] shadow-md p-4",
+  primary: "bg-indigo-500",
+  secondary: "bg-pink-500",
+  danger: "bg-red-600",
 };
+const variantTextStyles = {
+  default: "text-white font-semibold text-center",
+  primary: "text-lg",
+  secondary: "text-base",
+  danger: "text-base",
+};
+
+export const Button = forwardRef<View, ButtonProps>(
+  ({ title, variant, ...touchableProps }, ref) => {
+    return (
+      <TouchableOpacity
+        ref={ref}
+        {...touchableProps}
+        className={`${variantStyles.default} ${variant ? variantStyles[variant] : ""} ${touchableProps.className}`}
+      >
+        <Text
+          className={`${variantTextStyles.default} ${variant ? variantTextStyles[variant] : ""} ${touchableProps.textClassName}`}
+        >
+          {title}
+        </Text>
+      </TouchableOpacity>
+    );
+  },
+);
