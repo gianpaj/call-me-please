@@ -4,14 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm with-env next build",
+    "build": "next build",
     "clean": "git clean -xdf .cache .next .turbo node_modules",
-    "dev": "pnpm with-env next dev",
+    "dev": "next dev",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
-    "start": "pnpm with-env next start",
-    "typecheck": "tsc --noEmit",
-    "with-env": "dotenv -e ../../.env --"
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@acme/api": "workspace:*",
@@ -40,7 +39,6 @@
     "@types/node": "^20.17.7",
     "@types/react": "catalog:react18",
     "@types/react-dom": "catalog:react18",
-    "dotenv-cli": "^7.4.4",
     "eslint": "catalog:",
     "jiti": "^1.21.6",
     "prettier": "catalog:",
