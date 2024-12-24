@@ -63,10 +63,37 @@ This is a Turborepo project with the following structure:
    pnpm install
    ```
 3. Set up environment variables (See `.env.example` files)
-4. Run the development servers:
+4. Run the JS development servers:
    ```bash
    pnpm dev
    ```
+
+## Setup Python WebRTC Server
+
+```bash
+cd apps/webrtc-server
+python -m venv venv
+. venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Run Python WebRTC Server
+
+```bash
+cd apps/webrtc-server
+python3 main.py dev
+```
+
+## Download Turn-detection Voice model
+
+```bash
+cd apps/webrtc-server
+python my_agent.py download-files
+```
+
+<https://github.com/livekit/agents/tree/main/livekit-plugins/livekit-plugins-turn-detector>
+
+> The model requires 1.5GB of RAM and runs within a shared inference server, supporting multiple concurrent sessions.
 
 ## Resources
 
