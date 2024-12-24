@@ -38,7 +38,7 @@ Once I spend $100 on OpenAI, then add Stripe integration for top-up credits.
 - **API Communication**: tRPC
 - **ORM**: Drizzle
 - **UI Components**: NativeWind
-- **Internationalization**: i18next (TBD)
+- **Internationalization**: i18next (TBD) <https://docs.expo.dev/guides/localization/>
 
 ## Project Structure
 

@@ -23,9 +23,7 @@
         "icon": "./assets/notification_icon.png",
         "color": "#ffffff",
         "defaultChannel": "default",
-        "sounds": [
-          "./assets/notification_sound.wav"
-        ],
+        "sounds": ["./assets/notification_sound.wav"],
         "enableBackgroundRemoteNotifications": false
       }
     ]
@@ -42,9 +40,7 @@
     "resizeMode": "contain",
     "backgroundColor": "#ffffff"
   },
-  "assetBundlePatterns": [
-    "**/*"
-  ],
+  "assetBundlePatterns": ["**/*"],
   "ios": {
     "supportsTablet": true,
     "infoPlist": {
@@ -55,23 +51,16 @@
     "adaptiveIcon": {
       "foregroundImage": "./assets/adaptive-icon.png",
       "backgroundColor": "#ffffff"
-    }
+    },
+    "package": "com.onova.wakecall"
   },
   "extra": {
     "router": {
       "origin": false
+    },
+    "eas": {
+      "projectId": "5cdc48bb-fe2a-4b77-8b3d-fdcd18e75399"
     }
   },
-  "expo": {
-    "android": {
-      "package": "com.onova.wakecall"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "5cdc48bb-fe2a-4b77-8b3d-fdcd18e75399"
-      }
-    },
-    "owner": "gianpaj",
-    "slug": "wakecall"
-  }
+  "owner": "gianpaj"
 }
