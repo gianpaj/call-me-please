@@ -1,7 +1,7 @@
 {
-  "slug": "call-me-please",
+  "slug": "wakecall",
   "version": "1.0.0",
-  "scheme": "call-me-please",
+  "scheme": "wakecall",
   "web": {
     "bundler": "metro",
     "output": "static",
@@ -60,14 +60,18 @@
   "extra": {
     "router": {
       "origin": false
-    },
-    "eas": {
-      "projectId": "8dd45d22-3cc9-4176-8f7a-c2f02a9120de"
     }
   },
   "expo": {
     "android": {
       "package": "com.onova.wakecall"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5cdc48bb-fe2a-4b77-8b3d-fdcd18e75399"
+      }
+    },
+    "owner": "gianpaj",
+    "slug": "wakecall"
   }
 }
