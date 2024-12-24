@@ -15,7 +15,7 @@ Call Me Please is a mobile application that lets users schedule AI-powered voice
 ## Features
 
 - [ ] 🗣️ Choose from multiple AI voices
-- [ ] 📱 Schedule AI voice calls alarms
+- [ ] 📱 Schedule AI voice call alarms
 - [ ] 🔔 Push notifications for scheduled calls
 - [ ] 👤 User authentication with Google, Apple, Email + verification, and Twilio SMS verification
 

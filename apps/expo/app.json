@@ -23,28 +23,28 @@
         "icon": "./assets/notification_icon.png",
         "color": "#ffffff",
         "defaultChannel": "default",
-        "sounds": ["./assets/notification_sound.wav"],
+        "sounds": [
+          "./assets/notification_sound.wav"
+        ],
         "enableBackgroundRemoteNotifications": false
       }
     ]
   ],
   "experiments": {
     "typedRoutes": true,
-
     "tsconfigPaths": true
   },
-
   "orientation": "portrait",
   "icon": "./assets/icon.png",
-
   "userInterfaceStyle": "light",
-
   "splash": {
     "image": "./assets/splash.png",
     "resizeMode": "contain",
     "backgroundColor": "#ffffff"
   },
-  "assetBundlePatterns": ["**/*"],
+  "assetBundlePatterns": [
+    "**/*"
+  ],
   "ios": {
     "supportsTablet": true,
     "infoPlist": {
@@ -63,6 +63,11 @@
     },
     "eas": {
       "projectId": "8dd45d22-3cc9-4176-8f7a-c2f02a9120de"
+    }
+  },
+  "expo": {
+    "android": {
+      "package": "com.onova.wakecall"
     }
   }
 }
