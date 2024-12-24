@@ -84,7 +84,7 @@ export default function CallNow() {
         }}
         audio={true}
       />
-      <Stack.Screen options={{ title: "Call Now" }} />
+      <Stack.Screen options={{ title: "Wake Call" }} />
       <ScrollView
         contentContainerClassName="flex-1 p-7 justify-center"
         keyboardDismissMode="on-drag"

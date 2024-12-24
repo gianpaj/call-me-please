@@ -1,28 +1,30 @@
 // import "@bacons/text-decoder/install";
 
-import { Link, Tabs } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+import { Link, Tabs } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
-import { HeaderButton } from '~/components/HeaderButton';
-import { TabBarIcon } from '~/components/TabBarIcon';
-
-import { TRPCProvider } from '~/utils/api';
+import { HeaderButton } from "~/components/HeaderButton";
+import { TabBarIcon } from "~/components/TabBarIcon";
+import { TRPCProvider } from "~/utils/api";
 
 export default function TabLayout() {
   return (
     <TRPCProvider>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: 'black',
-        }}>
+          tabBarActiveTintColor: "black",
+        }}
+      >
         <Tabs.Screen
           name="index"
           options={{
-            title: 'Call Now',
-            tabBarIcon: ({ color }) => <TabBarIcon name="phone" color={color} />,
+            title: "WakeCall",
+            tabBarIcon: ({ color }) => (
+              <TabBarIcon name="phone" color={color} />
+            ),
             headerRight: () => (
               <Link href="/modal" asChild>
-                <HeaderButton onPress={() => alert('yo')} />
+                <HeaderButton onPress={() => alert("yo")} />
               </Link>
             ),
           }}
@@ -30,7 +32,7 @@ export default function TabLayout() {
         <Tabs.Screen
           name="settings"
           options={{
-            title: 'Settings',
+            title: "Settings",
             tabBarIcon: ({ color }) => <TabBarIcon name="cog" color={color} />,
           }}
         />

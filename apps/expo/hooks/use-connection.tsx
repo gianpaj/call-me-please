@@ -32,7 +32,7 @@ export const ConnectionProvider = ({
     token: string;
     shouldConnect: boolean;
     voice: VoiceId;
-  }>({ wsUrl: "", token: "", shouldConnect: false, voice: VoiceId.alloy });
+  }>({ wsUrl: "", token: "", shouldConnect: false, voice: VoiceId.echo });
 
   const instructions = useSessionStore((state) => state.instructions);
 
@@ -59,8 +59,7 @@ export const ConnectionProvider = ({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       token: accessToken,
       shouldConnect: true,
-      // voice: pgState.sessionConfig.voice,
-      voice: VoiceId.alloy,
+      voice: connectionDetails.voice,
     });
   };
 
