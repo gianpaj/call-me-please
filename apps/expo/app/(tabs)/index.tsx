@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { ScrollView, Text, TextInput } from "react-native";
-import * as Notifications from "expo-notifications";
-import { SchedulableTriggerInputTypes } from "expo-notifications";
 import { Stack } from "expo-router";
 import { AudioSession, LiveKitRoom } from "@livekit/react-native";
 
 import { Button } from "~/components/Button";
 import { useConnection } from "~/hooks/use-connection";
 import { useSessionStore } from "~/store/store";
+import {
+  requestPermissions,
+  scheduleNotification,
+  setNotificationHandler,
+} from "~/utils/permissions";
 
 export default function CallNow() {
   const { shouldConnect, connect, disconnect, wsUrl, token } = useConnection();
@@ -43,18 +46,7 @@ export default function CallNow() {
 
   const handleScheduleCall = async () => {
     try {
-      await Notifications.requestPermissionsAsync({
-        ios: {
-          allowAlert: true,
-          allowBadge: true,
-          allowSound: true,
-        },
-        android: {
-          allowAlert: true,
-          allowBadge: true,
-          allowSound: true,
-        },
-      });
+      await requestPermissions();
     } catch (error) {
       // TO TEST: on a newly installed app, deny permissions
       console.error("Error requesting permissions", error);
@@ -63,40 +55,18 @@ export default function CallNow() {
     }
     // First, set the handler that will cause the notification
     // to show the alert
-    Notifications.setNotificationHandler({
-      // eslint-disable-next-line @typescript-eslint/require-await
-      handleNotification: async () => ({
-        shouldShowAlert: true,
-        shouldPlaySound: true,
-        shouldSetBadge: false,
-      }),
-      handleSuccess: (notificationI) =>
-        console.log("Notification handler set", notificationI),
-      handleError: (error) =>
-        console.error("Error setting notification handler", error),
-    });
-
-    // Prepare the notification channel - for Android 8.0+
-    await Notifications.setNotificationChannelAsync("new_alarm", {
-      name: "WakeCall alarms",
-      importance: Notifications.AndroidImportance.HIGH,
-      sound: "./assets/notification_sound.wav",
-    });
-
+    setNotificationHandler(
+      (notificationId: string) =>
+        console.log("Notification handler set", notificationId),
+      (error) => console.error("Error setting notification handler", error),
+    );
     const notification_title = "Good morning";
 
-    await Notifications.scheduleNotificationAsync({
+    await scheduleNotification({
       content: {
         title: notification_title,
         body: "I'm proud of you. Now, let's get up and get going!",
-        // sound: "mySoundFile.wav",
       },
-      trigger: {
-        seconds: 3,
-        type: SchedulableTriggerInputTypes.TIME_INTERVAL,
-        channelId: "new_alarm",
-      },
-      // trigger: { seconds: 60, type: SchedulableTriggerInputTypes.TIME_INTERVAL },
     });
   };
 
