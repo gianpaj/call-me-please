@@ -5,8 +5,7 @@ Taken from: <https://github.com/livekit-examples/realtime-playground/tree/main/a
 ## Getting Started
 
 ```bash
-python3 -m venv venv
-. venv/bin/activate
+uv venv
 pip install -r requirements.txt
 ```
 

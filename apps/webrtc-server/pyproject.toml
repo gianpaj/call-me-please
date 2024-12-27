@@ -1,0 +1,13 @@
+[project]
+name = "webrtc-server"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "livekit-agents>=0.12.3",
+    "livekit-plugins-openai>=0.10.11",
+    "livekit-protocol>=0.8.0",
+    "livekit>=0.18.3",
+    "python-dotenv==1.0.1",
+]
