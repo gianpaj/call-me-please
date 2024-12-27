@@ -1,0 +1,7 @@
+app = "call-me-please"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "2gb"
+  cpus = 1
+  cpu_kind = "performance"
