@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ScrollView, Text, TextInput } from "react-native";
 import { Stack } from "expo-router";
 import { AudioSession, LiveKitRoom } from "@livekit/react-native";
 
 import { Button } from "~/components/Button";
+import VoicesDropdown from "~/components/VoicesDropdown";
+import { VoiceId } from "~/data/voices";
 import { useConnection } from "~/hooks/use-connection";
 import { useSessionStore } from "~/store/store";
 import {
@@ -12,9 +14,21 @@ import {
   setNotificationHandler,
 } from "~/utils/permissions";
 
+// OpenAI voices - TODO: get list of users' voices from API
+const voices = Object.values(VoiceId).map((voice) => ({
+  label: voice,
+  value: voice,
+}));
+
 export default function Call() {
   const { shouldConnect, connect, disconnect, wsUrl, token } = useConnection();
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
+  const [currentVoice, setVoice] = useState(VoiceId.ash);
+
+  const playVoice = useCallback((voiceId: VoiceId) => {
+    alert(`${voiceId} play`);
+  }, []);
+
   // // Start the audio session first.
   useEffect(() => {
     const start = async () => {
@@ -55,7 +69,7 @@ export default function Call() {
     }
     // First, set the handler that will cause the notification
     // to show the alert
-    setNotificationHandler(
+    void setNotificationHandler(
       (notificationId: string) =>
         console.log("Notification handler set", notificationId),
       (error) => console.error("Error setting notification handler", error),
@@ -89,6 +103,12 @@ export default function Call() {
         contentContainerClassName="flex-1 p-7 justify-center"
         keyboardDismissMode="on-drag"
       >
+        <VoicesDropdown
+          voices={voices}
+          currentVoice={currentVoice}
+          setVoice={setVoice}
+          playVoice={playVoice}
+        />
         <Button
           disabled={isConnecting}
           title={
