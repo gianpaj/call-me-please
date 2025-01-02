@@ -24,3 +24,4 @@ python main.py start
 ## Resources
 
 - <https://github.com/livekit/agents>
+- <https://fly.io> - to deploy the Docker image

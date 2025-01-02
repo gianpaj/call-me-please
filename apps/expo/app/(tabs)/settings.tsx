@@ -7,7 +7,7 @@ import { Stack } from "expo-router";
 
 import { Button } from "~/components/Button";
 
-export default function Home() {
+export default function Settings() {
   const handleCancelAllWakeCalls = async () => {
     const notifications = await getAllScheduledNotificationsAsync();
     await cancelAllScheduledNotificationsAsync();

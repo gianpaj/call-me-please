@@ -12,7 +12,7 @@ import {
   setNotificationHandler,
 } from "~/utils/permissions";
 
-export default function CallNow() {
+export default function Call() {
   const { shouldConnect, connect, disconnect, wsUrl, token } = useConnection();
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
   // // Start the audio session first.
@@ -84,7 +84,7 @@ export default function CallNow() {
         }}
         audio={true}
       />
-      <Stack.Screen options={{ title: "Wake Call" }} />
+      <Stack.Screen options={{ title: "Call" }} />
       <ScrollView
         contentContainerClassName="flex-1 p-7 justify-center"
         keyboardDismissMode="on-drag"

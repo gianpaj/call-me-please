@@ -4,7 +4,7 @@ import { Link, Tabs } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 
 import { HeaderButton } from "~/components/HeaderButton";
-import { TabBarIcon } from "~/components/TabBarIcon";
+import { FontAwesomeIcon, IonicIcon } from "~/components/icons";
 import { TRPCProvider } from "~/utils/api";
 
 export default function TabLayout() {
@@ -18,9 +18,9 @@ export default function TabLayout() {
         <Tabs.Screen
           name="index"
           options={{
-            title: "WakeCall",
+            title: "Call",
             tabBarIcon: ({ color }) => (
-              <TabBarIcon name="phone" color={color} />
+              <FontAwesomeIcon name="phone" color={color} />
             ),
             headerRight: () => (
               <Link href="/modal" asChild>
@@ -30,10 +30,21 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
+          name="clone"
+          options={{
+            title: "Clone Voice",
+            tabBarIcon: ({ color }) => (
+              <IonicIcon name="recording-sharp" color={color} />
+            ),
+          }}
+        />
+        <Tabs.Screen
           name="settings"
           options={{
             title: "Settings",
-            tabBarIcon: ({ color }) => <TabBarIcon name="cog" color={color} />,
+            tabBarIcon: ({ color }) => (
+              <FontAwesomeIcon name="cog" color={color} />
+            ),
           }}
         />
       </Tabs>
