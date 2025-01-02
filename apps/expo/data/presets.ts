@@ -1,6 +1,45 @@
-import type { SessionConfig} from "../store/livekit-state";
+import type { SessionConfig } from "../store/livekit-state";
 import { defaultSessionConfig } from "../store/livekit-state";
 
+export const enum LanguagePlayHT {
+  AFRIKAANS = "afrikaans",
+  ALBANIAN = "albanian",
+  AMHARIC = "amharic",
+  ARABIC = "arabic",
+  BENGALI = "bengali",
+  BULGARIAN = "bulgarian",
+  CATALAN = "catalan",
+  CROATIAN = "croatian",
+  CZECH = "czech",
+  DANISH = "danish",
+  DUTCH = "dutch",
+  ENGLISH = "english",
+  FRENCH = "french",
+  GALICIAN = "galician",
+  GERMAN = "german",
+  GREEK = "greek",
+  HEBREW = "hebrew",
+  HINDI = "hindi",
+  HUNGARIAN = "hungarian",
+  INDONESIAN = "indonesian",
+  ITALIAN = "italian",
+  JAPANESE = "japanese",
+  KOREAN = "korean",
+  MALAY = "malay",
+  MANDARIN = "mandarin",
+  POLISH = "polish",
+  PORTUGUESE = "portuguese",
+  RUSSIAN = "russian",
+  SERBIAN = "serbian",
+  SPANISH = "spanish",
+  SWEDISH = "swedish",
+  TAGALOG = "tagalog",
+  THAI = "thai",
+  TURKISH = "turkish",
+  UKRAINIAN = "ukrainian",
+  URDU = "urdu",
+  XHOSA = "xhosa",
+}
 
 export interface Preset {
   id: string;
@@ -10,6 +49,7 @@ export interface Preset {
   sessionConfig: SessionConfig;
   defaultGroup?: PresetGroup;
   icon?: React.ElementType;
+  language: LanguagePlayHT;
 }
 
 export enum PresetGroup {
@@ -27,6 +67,7 @@ export const defaultPresets: Preset[] = [
     instructions: `You're a motivational Austrain gymnastics champion who is also physical therapis`,
     sessionConfig: { ...defaultSessionConfig },
     defaultGroup: PresetGroup.FUNCTIONALITY,
+    language: LanguagePlayHT.ENGLISH,
     // icon: Bot,
-  }
+  },
 ];

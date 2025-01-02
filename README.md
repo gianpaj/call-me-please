@@ -104,6 +104,10 @@ python my_agent.py download-files
 - Original repo1: <https://github.com/roninoss/create-expo-stack>
 - Original repo2: <https://github.com/t3-oss/create-t3-turbo>
 
+### LiveKit
+
+- [PlayHT Python module](https://github.com/playht/pyht)
+
 -- ORIGINAL README BELOW --
 
 > [!NOTE]
