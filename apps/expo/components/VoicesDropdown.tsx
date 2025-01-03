@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
+import { useAudioPlayer } from "expo-audio";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import _assign from "lodash/assign";
 import _get from "lodash/get";

@@ -26,7 +26,8 @@
         "sounds": ["./assets/notification_sound.wav"],
         "enableBackgroundRemoteNotifications": false
       }
-    ]
+    ],
+    "expo-audio"
   ],
   "experiments": {
     "typedRoutes": true,

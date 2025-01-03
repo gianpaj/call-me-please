@@ -154,6 +154,9 @@ importers:
       expo:
         specifier: ^52.0.18
         version: 52.0.19(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@expo/metro-runtime@4.0.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1)
+      expo-audio:
+        specifier: ~0.3.1
+        version: 0.3.1(expo@52.0.19(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@expo/metro-runtime@4.0.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1)
       expo-constants:
         specifier: ~17.0.3
         version: 17.0.3(expo@52.0.19(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@expo/metro-runtime@4.0.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))
@@ -4841,6 +4844,13 @@ packages:
 
   expo-asset@11.0.1:
     resolution: {integrity: sha512-WatvD7JVC89EsllXFYcS/rji3ajVzE2B/USo0TqedsETixwyVCQfrrvCdCPQyuKghrxVNEj8bQ/Qbea/RZLYjg==}
+    peerDependencies:
+      expo: '*'
+      react: '*'
+      react-native: '*'
+
+  expo-audio@0.3.1:
+    resolution: {integrity: sha512-DVqI4NhQa4z6yHVGMgWPCqBOo1waMX0LnaAnCoUfDKe9InV/NDCT/infBFleBsn0urpFrRyCAbBdyIFW8k/B4Q==}
     peerDependencies:
       expo: '*'
       react: '*'
@@ -13620,6 +13630,12 @@ snapshots:
       react-native: 0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)
     transitivePeerDependencies:
       - supports-color
+
+  expo-audio@0.3.1(expo@52.0.19(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@expo/metro-runtime@4.0.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1):
+    dependencies:
+      expo: 52.0.19(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@expo/metro-runtime@4.0.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+      react-native: 0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)
 
   expo-constants@17.0.3(expo@52.0.19(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@expo/metro-runtime@4.0.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)):
     dependencies:
