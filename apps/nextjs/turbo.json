@@ -1,18 +1,18 @@
 {
   "$schema": "https://turborepo.org/schema.json",
   "extends": ["//"],
-  "globalEnv": [
-    "POSTGRES_URL",
-    "LIVEKIT_API_KEY",
-    "LIVEKIT_API_SECRET",
-    "LIVEKIT_URL",
-    "OPENAI_API_KEY",
-    "AUTH_SECRET"
-  ],
   "tasks": {
     "build": {
+      "env": [
+        "POSTGRES_URL",
+        "LIVEKIT_API_KEY",
+        "LIVEKIT_API_SECRET",
+        "LIVEKIT_URL",
+        "OPENAI_API_KEY",
+        "AUTH_SECRET"
+      ],
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**", "next-env.d.ts"]
+      "outputs": [".next/**", "!.next/cache/**", "next-env.d.ts", ".vercel/**"]
     },
     "dev": {
       "persistent": true
