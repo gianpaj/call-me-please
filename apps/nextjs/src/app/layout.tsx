@@ -15,21 +15,25 @@ import { env } from "~/env";
 export const metadata: Metadata = {
   metadataBase: new URL(
     env.VERCEL_ENV === "production"
-      ? "https://turbo.t3.gg"
+      ? "https://call-me-pls.vercel.app"
       : "http://localhost:3000",
   ),
-  title: "Create T3 Turbo",
-  description: "Simple monorepo with shared backend for web & mobile apps",
+  title:
+    "WakeCall - Schedule personalized AI voice calls with your favorite characters",
+  description:
+    "WakeCall: AI voice calls with Santa, Arnold & more! Easy scheduling, recurring calls. Make mornings exciting!",
   openGraph: {
-    title: "Create T3 Turbo",
-    description: "Simple monorepo with shared backend for web & mobile apps",
-    url: "https://create-t3-turbo.vercel.app",
-    siteName: "Create T3 Turbo",
+    title:
+      "WakeCall app - Schedule personalized AI voice calls with your favorite characters",
+    description:
+      "WakeCall: AI voice calls with Santa, Arnold & more! Easy scheduling, recurring calls. Make mornings exciting!",
+    url: "https://call-me-pls.vercel.app",
+    siteName: "WakeCall",
   },
   twitter: {
     card: "summary_large_image",
-    site: "@jullerino",
-    creator: "@jullerino",
+    site: "@gianpaj",
+    creator: "@gianpaj",
   },
 };
 
@@ -45,7 +49,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans text-foreground antialiased",
+          "min-h-screen bg-gray-50 font-sans text-foreground antialiased",
           GeistSans.variable,
           GeistMono.variable,
         )}

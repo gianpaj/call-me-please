@@ -10,6 +10,7 @@ export default function TallyForm() {
       : false;
   return (
     <div className="w-full sm:w-[44rem]">
+      <h2 className="text-center text-2xl font-semibold">Waiting List</h2>
       <iframe
         data-tally-src="https://tally.so/embed/wL5qAz?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
         loading="lazy"

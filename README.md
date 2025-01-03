@@ -1,5 +1,7 @@
 # Call Me Please app
 
+<https://call-me-pls.vercel.app>
+
 A mobile application that allows users to schedule AI voice phone calls using React Native and Expo.
 
 ## Follow the development journey on YouTube Playlist
@@ -103,6 +105,7 @@ python my_agent.py download-files
 - <https://github.com/livekit-examples/phone-assistant>
 - Original repo1: <https://github.com/roninoss/create-expo-stack>
 - Original repo2: <https://github.com/t3-oss/create-t3-turbo>
+- Landing page generated with [Bolt.new](https://bolt.new)
 
 -- ORIGINAL README BELOW --
 
