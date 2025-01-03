@@ -1,7 +1,8 @@
 // import "@bacons/text-decoder/install";
 
 import { Link, Tabs } from "expo-router";
-import { StatusBar } from "expo-status-bar";
+
+// import { StatusBar } from "expo-status-bar";
 
 import { HeaderButton } from "~/components/HeaderButton";
 import { FontAwesomeIcon, IonicIcon } from "~/components/icons";

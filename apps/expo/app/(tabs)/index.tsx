@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { ScrollView, Text, TextInput } from "react-native";
+import { ScrollView, Text, TextInput, View } from "react-native";
 import { Stack } from "expo-router";
 import { AudioSession, LiveKitRoom } from "@livekit/react-native";
 
@@ -103,12 +103,14 @@ export default function Call() {
         contentContainerClassName="flex-1 p-7 justify-center"
         keyboardDismissMode="on-drag"
       >
-        <VoicesDropdown
-          voices={voices}
-          currentVoice={currentVoice}
-          setVoice={setVoice}
-          playVoice={playVoice}
-        />
+        <View className="py-4">
+          <VoicesDropdown
+            voices={voices}
+            currentVoice={currentVoice}
+            setVoice={setVoice}
+            playVoice={playVoice}
+          />
+        </View>
         <Button
           disabled={isConnecting}
           title={
@@ -130,6 +132,7 @@ export default function Call() {
         <TextInput
           editable={!(isConnecting || shouldConnect)}
           multiline
+          className="text-lg"
           onChangeText={(text) => setInstructions(text)}
         >
           {instructions}

@@ -1,19 +1,16 @@
-import React, { useCallback, useState } from "react";
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import React, { useCallback, useReducer, useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import { useAudioPlayer } from "expo-audio";
-import AntDesign from "@expo/vector-icons/AntDesign";
+// import AntDesign from "@expo/vector-icons/AntDesign";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 import _assign from "lodash/assign";
 import _get from "lodash/get";
 import _isEqual from "lodash/isEqual";
 
-import type { VoiceId } from "~/data/voices";
+import { VoiceId } from "~/data/voices";
+
+const EXPO_PUBLIC_API_SERVER = process.env.EXPO_PUBLIC_API_SERVER;
 
 interface VoiceOption {
   label: VoiceId;
@@ -31,16 +28,40 @@ const VoicesDropdown = ({
   voices,
   currentVoice,
   setVoice,
-  playVoice,
+  // playVoice,
 }: Props) => {
-  // const [value, setValue] = useState(null);
+  const [voicePlaying, setVoicePlaying] = useState<VoiceId>();
   const [isFocus, setIsFocus] = useState(false);
+  const player = useAudioPlayer(
+    `${EXPO_PUBLIC_API_SERVER}/openai-voices/${VoiceId.ash}.mp3`,
+  );
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  const [_, forceUpdate] = useReducer((x) => x + 1, 0);
+
+  const togglePlaySound = (voice: VoiceId) => {
+    try {
+      if (player.playing && voicePlaying === voice) {
+        player.pause();
+        forceUpdate();
+        return;
+      }
+      player.pause();
+      setVoicePlaying(voice);
+      player.replace({
+        uri: `${EXPO_PUBLIC_API_SERVER}/openai-voices/${voice}.mp3`,
+      });
+      player.play();
+      forceUpdate();
+    } catch (error) {
+      console.error("Error playing sound:", error);
+    }
+  };
 
   const renderLabel = () => {
     if (currentVoice || isFocus) {
       return (
-        <Text style={[styles.label, isFocus && { color: "blue" }]}>
-          Dropdown label
+        <Text className="bg-background" style={styles.label}>
+          Voice
         </Text>
       );
     }
@@ -110,17 +131,23 @@ const VoicesDropdown = ({
 
   const renderItem = (item: VoiceOption) => {
     return (
-      <View style={styles.item}>
-        <Text style={styles.textItem}>{item.label}</Text>
+      <View
+        className={`my-2 flex-row items-center justify-between px-3 py-4 ${item.value === currentVoice ? "rounded border-[1px] border-gray-300 bg-white" : ""}`}
+      >
+        <Text className="text-lg">{item.label}</Text>
 
         <TouchableOpacity
           hitSlop={{ top: 20, right: 20, bottom: 20, left: 20 }}
-          onPress={() => playVoice(item.value)}
+          onPress={() => togglePlaySound(item.value)}
         >
-          <AntDesign
+          <FontAwesome
             style={styles.icon}
             color="black"
-            name="playcircleo"
+            name={
+              item.value === voicePlaying && player.playing
+                ? "stop-circle"
+                : "play-circle"
+            }
             size={24}
           />
         </TouchableOpacity>
@@ -129,15 +156,16 @@ const VoicesDropdown = ({
   };
 
   return (
-    <View style={styles.container}>
-      {/* {renderLabel()} */}
+    <View className="py-5">
+      {renderLabel()}
       <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
+        style={styles.dropdown}
+        activeColor="#f2f2f2"
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
-        iconStyle={styles.iconStyle}
         data={voices}
+        containerStyle={styles.containerStyle}
         search
         maxHeight={300}
         labelField="label"
@@ -152,14 +180,6 @@ const VoicesDropdown = ({
           setVoice(item.value);
           setIsFocus(false);
         }}
-        renderLeftIcon={() => (
-          <AntDesign
-            style={styles.icon}
-            color={isFocus ? "blue" : "black"}
-            name="Safety"
-            size={20}
-          />
-        )}
       />
     </View>
   );
@@ -168,15 +188,14 @@ const VoicesDropdown = ({
 export default VoicesDropdown;
 
 const styles = StyleSheet.create({
-  container: {
-    // backgroundColor: "white",
-    padding: 16,
+  containerStyle: {
+    backgroundColor: "#f2f2f2",
   },
   dropdown: {
-    height: 50,
-    // borderColor: "gray",
-    // borderWidth: 0.5,
-    // borderRadius: 8,
+    height: 64,
+    borderColor: "gray",
+    borderWidth: 0.5,
+    borderRadius: 8,
     paddingHorizontal: 8,
   },
   icon: {
@@ -184,8 +203,7 @@ const styles = StyleSheet.create({
   },
   label: {
     position: "absolute",
-    backgroundColor: "white",
-    left: 22,
+    left: 0,
     top: 8,
     zIndex: 999,
     paddingHorizontal: 8,
@@ -197,22 +215,9 @@ const styles = StyleSheet.create({
   selectedTextStyle: {
     fontSize: 16,
   },
-  iconStyle: {
-    width: 20,
-    height: 20,
-  },
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
-  },
-  item: {
-    padding: 17,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  textItem: {
-    flex: 1,
-    fontSize: 16,
+    borderWidth: 0,
   },
 });
