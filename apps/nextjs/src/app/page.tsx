@@ -10,10 +10,10 @@ import Hero from "./_components/Hero";
 function DownloadButtons() {
   return (
     <div className="flex justify-center">
-      <div className="grid grid-cols-1 justify-center gap-2 sm:grid-cols-2 sm:gap-8">
+      <div className="grid grid-cols-1 justify-center gap-4 sm:grid-cols-2 sm:gap-8">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className="w-40 cursor-not-allowed"
+          className="w-48 cursor-not-allowed sm:w-40"
           fetchPriority="high"
           src="/apple-store-logo.avif"
           alt="Download Apple Store Logo"
@@ -21,7 +21,7 @@ function DownloadButtons() {
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          className="w-40 cursor-not-allowed"
+          className="w-48 cursor-not-allowed sm:w-40"
           fetchPriority="high"
           src="/play-store-logo.avif"
           alt="Download Google Play Store Logo"
@@ -45,7 +45,9 @@ export default function HomePage() {
           {/* <AuthShowcase /> */}
 
           <TallyForm />
-          <DownloadButtons />
+          <div className="py-16">
+            <DownloadButtons />
+          </div>
           <Footer />
         </div>
       </main>
