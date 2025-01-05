@@ -5,8 +5,8 @@ Taken from: <https://github.com/livekit-examples/realtime-playground/tree/main/a
 ## Getting Started
 
 ```bash
-uv venv
-pip install -r requirements.txt
+uv .venv
+uv sync
 ```
 
 ## Running the Server in development mode
@@ -19,6 +19,12 @@ python main.py dev
 
 ```bash
 python main.py start
+```
+
+## Deploy to Fly.io
+
+```bash
+flyctl deploy
 ```
 
 ## Resources

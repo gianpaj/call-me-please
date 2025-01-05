@@ -74,9 +74,8 @@ This is a Turborepo project with the following structure:
 
 ```bash
 cd apps/webrtc-server
-python -m venv venv
-. venv/bin/activate
-pip install -r requirements.txt
+uv .venv
+uv sync
 ```
 
 ### Run Python WebRTC Server
@@ -106,6 +105,7 @@ python my_agent.py download-files
 - Original repo1: <https://github.com/roninoss/create-expo-stack>
 - Original repo2: <https://github.com/t3-oss/create-t3-turbo>
 - Landing page generated with [Bolt.new](https://bolt.new)
+- [Fly.io](https://fly.io) to deploy the Python WebRTC server
 
 -- ORIGINAL README BELOW --
 

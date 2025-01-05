@@ -132,7 +132,7 @@ const VoicesDropdown = ({
   const renderItem = (item: VoiceOption) => {
     return (
       <View
-        className={`my-2 flex-row items-center justify-between px-3 py-4 ${item.value === currentVoice ? "rounded border-[1px] border-gray-300 bg-white" : ""}`}
+        className={`my-2 flex-row items-center justify-between px-3 py-4 ${item.value === currentVoice ? "rounded border-y-[0.5px] border-gray-300 bg-white" : ""}`}
       >
         <Text className="text-lg">{item.label}</Text>
 
@@ -170,7 +170,7 @@ const VoicesDropdown = ({
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={!isFocus ? "Select item" : "..."}
+        placeholder={isFocus ? "..." : "Select item"}
         searchPlaceholder="Search..."
         value={currentVoice}
         renderItem={renderItem}

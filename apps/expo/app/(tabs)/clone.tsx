@@ -6,7 +6,7 @@ import { Button } from "~/components/Button";
 export default function Clone() {
   return (
     <>
-      <Stack.Screen options={{ title: "Clone" }} />
+      <Stack.Screen options={{ title: "Clone Voice" }} />
       <View style={styles.container}>
         <Button
           onPress={() => {}}
