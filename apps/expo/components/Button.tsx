@@ -13,7 +13,7 @@ const variantStyles = {
   default: "items-center  rounded-[28px] shadow-md p-4",
   primary: "bg-indigo-500",
   secondary: "bg-pink-500",
-  danger: "bg-red-600",
+  danger: "bg-red-500",
 };
 const variantTextStyles = {
   default: "text-white font-semibold text-center",

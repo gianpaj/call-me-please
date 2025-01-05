@@ -25,7 +25,7 @@ export default function TabLayout() {
             ),
             headerRight: () => (
               <Link href="/modal" asChild>
-                <HeaderButton onPress={() => alert("yo")} />
+                <HeaderButton />
               </Link>
             ),
           }}

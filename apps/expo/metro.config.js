@@ -39,6 +39,8 @@ function withMonorepoPaths(config) {
   // #1 - Watch all files in the monorepo
   config.watchFolders = [workspaceRoot];
 
+  // config.resolver.disableHierarchicalLookup = true;
+
   // #2 - Resolve modules within the project's `node_modules` first, then all monorepo modules
   config.resolver.nodeModulesPaths = [
     path.resolve(projectRoot, "node_modules"),

@@ -5,7 +5,10 @@ import {
 } from "expo-notifications";
 import { Stack } from "expo-router";
 
+// import Auth from "~/components/Auth";
 import { Button } from "~/components/Button";
+
+// import { supabase } from "~/utils/supabase";
 
 export default function Settings() {
   const handleCancelAllWakeCalls = async () => {
@@ -23,12 +26,19 @@ export default function Settings() {
     <>
       <Stack.Screen options={{ title: "Settings" }} />
       <View style={styles.container}>
+        {/* <Auth /> */}
         <Button
           onPress={handleCancelAllWakeCalls}
           title="Cancel all WakeCalls"
           className="w-50 mx-auto mt-4 py-2"
           variant="danger"
         />
+        {/* <Button
+          onPress={() => supabase.auth.signOut()}
+          title="Sign Out"
+          className="w-50 mx-auto mt-4 py-2"
+          variant="danger"
+        /> */}
       </View>
     </>
   );
