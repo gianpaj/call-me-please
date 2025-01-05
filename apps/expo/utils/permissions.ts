@@ -11,8 +11,8 @@ import {
   setNotificationChannelAsync,
 } from "expo-notifications";
 
-export const requestPermissions = async () => {
-  await requestPermissionsAsync({
+export const requestPermissions = () =>
+  requestPermissionsAsync({
     ios: {
       allowAlert: true,
       allowBadge: true,
@@ -24,7 +24,6 @@ export const requestPermissions = async () => {
       allowSound: true,
     },
   });
-};
 
 export const setNotificationHandler = async (
   onSuccess: ((notificationId: string) => void) | undefined,
@@ -65,5 +64,4 @@ export const scheduleNotification = ({
       type: SchedulableTriggerInputTypes.TIME_INTERVAL,
       channelId: "new_alarm",
     },
-    // trigger: { seconds: 60, type: SchedulableTriggerInputTypes.TIME_INTERVAL },
   });
