@@ -6,6 +6,15 @@
 - test Android expo-notification sound
 - fix nextjs landing page colours (light mode)
 
+## App publishing
+
+### Android
+
+- design Feature graphic (1,024 px by 500 px)
+- phone screenshots (2-8 phone screenshots. 9:16 aspect ratio, with each side between 320 px and 3,840 px)
+- 7-inch tablet screenshots (same req. no min req.)
+- 10-inch tablet screenshots (no min. 16:9 or 9:16 aspect ratio, with each side between 1,080 px and 7,680 px)
+
 ## To Implement
 
 - should we use '@supabase/supabase-js' in the client side for auth? or next-auth? <https://github.com/supabase/supabase-js/issues/1258>

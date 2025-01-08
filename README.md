@@ -107,6 +107,16 @@ python my_agent.py download-files
 - Landing page generated with [Bolt.new](https://bolt.new)
 - [Fly.io](https://fly.io) to deploy the Python WebRTC server
 
+
+### App Publishing
+
+- <https://icon.kitchen> - for App Stores' icons
+- <https://romannurik.github.io/AndroidAssetStudio> - for Notification icons
+
+## Icon
+
+- Logo/icon taken from <https://github.com/twitter/twemoji>
+
 -- ORIGINAL README BELOW --
 
 > [!NOTE]
