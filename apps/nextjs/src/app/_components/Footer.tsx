@@ -1,5 +1,5 @@
 const socialLinks = {
-  twitter: "https://twitter.com/gianpaj",
+  twitter: "https://x.com/gianpaj",
   youtube: "https://youtube.com/@gianpaj",
 };
 function Footer() {
