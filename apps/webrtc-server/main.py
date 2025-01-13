@@ -6,18 +6,19 @@ import logging
 import uuid
 from dataclasses import asdict, dataclass
 from typing import Any, Dict, Literal
-
+import os
 from livekit import rtc
 from livekit.agents import (
     AutoSubscribe,
     JobContext,
     WorkerOptions,
-    WorkerType,
     cli,
-    # llm,
+    llm,
+    JobProcess
 )
 from livekit.agents.multimodal import MultimodalAgent
-from livekit.plugins import openai
+from livekit.agents.pipeline import VoicePipelineAgent
+from livekit.plugins import openai, silero, playai
 
 from dotenv import load_dotenv
 
@@ -38,7 +39,7 @@ class SessionConfig:
 
     def __post_init__(self):
         if self.modalities is None:
-            self.modalities = self._modalities_from_string("text_and_audio")
+            self.modalities = self._modalities_from_string("text_and_audio") # type: ignore
 
     def to_dict(self):
         return {k: v for k, v in asdict(self).items() if k != "openai_api_key"}
@@ -84,7 +85,7 @@ def parse_session_config(data: Dict[str, Any]) -> SessionConfig:
     return config
 
 
-async def entrypoint(ctx: JobContext):
+async def entrypoint_old(ctx: JobContext):
     logger.info(f"connecting to room {ctx.room.name}")
     await ctx.connect(auto_subscribe=AutoSubscribe.AUDIO_ONLY)
 
@@ -110,7 +111,7 @@ def run_multimodal_agent(ctx: JobContext, participant: rtc.Participant):
         voice=config.voice,
         temperature=config.temperature,
         model="gpt-4o-mini-realtime-preview",
-        max_response_output_tokens=config.max_response_output_tokens,
+        max_response_output_tokens=int(config.max_response_output_tokens),
         modalities=config.modalities,
         turn_detection=config.turn_detection
     )
@@ -321,6 +322,51 @@ def run_multimodal_agent(ctx: JobContext, participant: rtc.Participant):
             )
             last_transcript_id = None
 
+async def entrypoint(ctx: JobContext):
+    logger.info(f"connecting to room {ctx.room.name}")
+    await ctx.connect(auto_subscribe=AutoSubscribe.AUDIO_ONLY)
+
+    participant = await ctx.wait_for_participant()
+
+    metadata = json.loads(participant.metadata)
+    config = parse_session_config(metadata)
+
+    logger.info(f"starting with config: {config.to_dict()}")
+
+    # fnc_ctx = AssistantFnc()  # create our fnc ctx instance
+    initial_chat_ctx = llm.ChatContext().append(
+        text=config.instructions,
+        role="system",
+    )
+    agent = VoicePipelineAgent(
+        vad=ctx.proc.userdata["vad"], # there's a better one...
+        # stt=None,
+        stt=openai.STT(),
+        llm=openai.LLM(),
+        # https://github.com/livekit/agents/blob/8962d736325af87f9ce315d853fe92864c42720b/livekit-plugins/livekit-plugins-playai/livekit/plugins/playai/tts.py
+        tts=playai.TTS(
+            # voice=os.environ.get('PLAYHT_VOICE'), # type: ignore
+            # language=config.language
+            language='english',
+            model="Play3.0-mini-ws",
+            # word_tokenizer
+        ),
+        # fnc_ctx=fnc_ctx,
+        chat_ctx=initial_chat_ctx,
+    )
+
+    # Start the assistant. This will automatically publish a microphone track and listen to the participant.
+    agent.start(ctx.room, participant)
+    # await agent.say(
+    #     "Hello from the weather station. Would you like to know the weather? If so, tell me your location."
+    # )
+
+def prewarm_process(proc: JobProcess):
+    # preload silero VAD in memory to speed up session start
+    proc.userdata["vad"] = silero.VAD.load()
 
 if __name__ == "__main__":
-    cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint, worker_type=WorkerType.ROOM))
+    cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint,
+        prewarm_fnc=prewarm_process,
+        # worker_type=WorkerType.ROOM
+    ))

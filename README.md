@@ -117,6 +117,10 @@ python my_agent.py download-files
 
 - Logo/icon taken from <https://github.com/twitter/twemoji>
 
+### LiveKit
+
+- [PlayHT Python module](https://github.com/playht/pyht)
+
 -- ORIGINAL README BELOW --
 
 > [!NOTE]
