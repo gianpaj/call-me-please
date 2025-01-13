@@ -348,7 +348,7 @@ async def entrypoint(ctx: JobContext):
         llm=openai.LLM(),
         # https://github.com/livekit/agents/blob/8962d736325af87f9ce315d853fe92864c42720b/livekit-plugins/livekit-plugins-playai/livekit/plugins/playai/tts.py
         tts=playai.TTS(
-            voice=os.environ.get('PLAYHT_VOICE'), # type: ignore
+            # voice=os.environ.get('PLAYHT_VOICE'), # type: ignore
             # language=config.language
             language='english',
             model="Play3.0-mini-ws",
@@ -369,7 +369,7 @@ def prewarm_process(proc: JobProcess):
     proc.userdata["vad"] = silero.VAD.load()
 
 if __name__ == "__main__":
-    cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint_old,
+    cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint,
         prewarm_fnc=prewarm_process,
         # worker_type=WorkerType.ROOM
     ))
