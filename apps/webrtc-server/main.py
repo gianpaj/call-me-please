@@ -73,7 +73,7 @@ def parse_session_config(data: Dict[str, Any]) -> SessionConfig:
         instructions=data.get("instructions", ""),
         voice=data.get("voice", "alloy"),
         temperature=float(data.get("temperature", 0.8)),
-        max_response_output_tokens=data.get("max_output_tokens")
+        max_response_output_tokens=data.get("max_output_tokens") # by default is 'inf'
         if data.get("max_output_tokens") == "inf"
         else int(data.get("max_output_tokens") or 2048),
         modalities=SessionConfig._modalities_from_string(
@@ -112,10 +112,7 @@ def run_multimodal_agent(ctx: JobContext, participant: rtc.Participant):
         model="gpt-4o-mini-realtime-preview",
         max_response_output_tokens=config.max_response_output_tokens,
         modalities=config.modalities,
-        # turn_detection=config.turn_detection,
-        turn_detection=openai.realtime.ServerVadOptions(
-            threshold=0.6, prefix_padding_ms=200, silence_duration_ms=500
-        ),
+        turn_detection=config.turn_detection
     )
     assistant = MultimodalAgent(model=model)
     assistant.start(ctx.room)
