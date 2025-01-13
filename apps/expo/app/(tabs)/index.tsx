@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { ScrollView, Text, TextInput, View } from "react-native";
-import { Stack } from "expo-router";
+import { router, Stack } from "expo-router";
 import { AudioSession, LiveKitRoom } from "@livekit/react-native";
 
 import { Button } from "~/components/Button";

@@ -130,6 +130,9 @@ importers:
       '@react-native-async-storage/async-storage':
         specifier: 1.23.1
         version: 1.23.1(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))
+      '@react-native-google-signin/google-signin':
+        specifier: ^13.1.0
+        version: 13.1.0(expo@52.0.23(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@expo/metro-runtime@4.0.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1)
       '@rn-primitives/switch':
         specifier: ^1.1.0
         version: 1.1.0(@types/react-dom@18.3.1)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react-native-web@0.19.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1)
@@ -2784,6 +2787,19 @@ packages:
 
   '@react-native-community/cli-tools@13.6.9':
     resolution: {integrity: sha512-OXaSjoN0mZVw3nrAwcY1PC0uMfyTd9fz7Cy06dh+EJc+h0wikABsVRzV8cIOPrVV+PPEEXE0DBrH20T2puZzgQ==}
+
+  '@react-native-google-signin/google-signin@13.1.0':
+    resolution: {integrity: sha512-C2/sqb0/s0c+Dwc/mykASZsRuHxGqn7SFrCxCY9D8p8IOQO05haInhCc7lzraJshRixGva5c/4usQZ71HMYSEQ==}
+    peerDependencies:
+      expo: '>=50.0.0'
+      react: '*'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      expo:
+        optional: true
+      react-dom:
+        optional: true
 
   '@react-native/assets-registry@0.76.5':
     resolution: {integrity: sha512-MN5dasWo37MirVcKWuysRkRr4BjNc81SXwUtJYstwbn8oEkfnwR9DaqdDTo/hHOnTdhafffLIa2xOOHcjDIGEw==}
@@ -11127,6 +11143,14 @@ snapshots:
     transitivePeerDependencies:
       - encoding
     optional: true
+
+  '@react-native-google-signin/google-signin@13.1.0(expo@52.0.23(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@expo/metro-runtime@4.0.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+      react-native: 0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)
+    optionalDependencies:
+      expo: 52.0.23(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@expo/metro-runtime@4.0.0(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1)))(bufferutil@4.0.8)(graphql@15.8.0)(react-native@0.76.5(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(@react-native-community/cli-server-api@13.6.9(bufferutil@4.0.8))(@types/react@18.3.11)(bufferutil@4.0.8)(react@18.3.1))(react@18.3.1)
+      react-dom: 18.3.1(react@18.3.1)
 
   '@react-native/assets-registry@0.76.5': {}
 

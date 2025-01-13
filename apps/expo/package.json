@@ -32,6 +32,7 @@
     "@livekit/react-native-expo-plugin": "^1.0.0",
     "@livekit/react-native-webrtc": "^125.0.7",
     "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-google-signin/google-signin": "^13.1.0",
     "@rn-primitives/switch": "^1.1.0",
     "@shopify/flash-list": "1.7.1",
     "@supabase/supabase-js": "^2.47.10",

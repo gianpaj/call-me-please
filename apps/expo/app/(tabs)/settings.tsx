@@ -4,6 +4,7 @@ import {
   getAllScheduledNotificationsAsync,
 } from "expo-notifications";
 import { Stack } from "expo-router";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 // import Auth from "~/components/Auth";
 import { Button } from "~/components/Button";
@@ -17,8 +18,21 @@ export default function Settings() {
     if (notifications.length === 0) {
       alert("All WakeCalls have been cancelled");
       return;
-    } else if (notifications.length > 0) {
+    }
+    if (notifications.length > 0) {
       alert(`${notifications.length} WakeCalls have been cancelled`);
+    }
+  };
+  const signOut = async () => {
+    try {
+      await GoogleSignin.revokeAccess();
+      await GoogleSignin.signOut();
+
+      // this.setState({ userInfo: undefined, error: undefined });
+    } catch (error) {
+      // this.setState({
+      //   error: error as NativeModuleError,
+      // });
     }
   };
 
@@ -33,12 +47,13 @@ export default function Settings() {
           className="w-50 mx-auto mt-4 py-2"
           variant="danger"
         />
-        {/* <Button
-          onPress={() => supabase.auth.signOut()}
+        {/* {isLoggedIn &&} */}
+        <Button
+          onPress={signOut}
           title="Sign Out"
           className="w-50 mx-auto mt-4 py-2"
           variant="danger"
-        /> */}
+        />
       </View>
     </>
   );
