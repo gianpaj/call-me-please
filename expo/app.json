@@ -23,7 +23,9 @@
         "icon": "./assets/notification_icon.png",
         "color": "#ffffff",
         "defaultChannel": "default",
-        "sounds": ["./assets/notification_sound.wav"],
+        "sounds": [
+          "./assets/notification_sound.wav"
+        ],
         "enableBackgroundRemoteNotifications": false
       }
     ],
@@ -33,7 +35,8 @@
       {
         "iosUrlScheme": "com.googleusercontent.apps.211801228573-125uf13pr0k8rjnou2n12toobm2majka"
       }
-    ]
+    ],
+    "expo-secure-store"
   ],
   "experiments": {
     "typedRoutes": true,
@@ -47,7 +50,9 @@
     "resizeMode": "contain",
     "backgroundColor": "#ffffff"
   },
-  "assetBundlePatterns": ["**/*"],
+  "assetBundlePatterns": [
+    "**/*"
+  ],
   "ios": {
     "supportsTablet": true,
     "infoPlist": {

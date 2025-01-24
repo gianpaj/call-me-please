@@ -22,7 +22,6 @@ export default function TallyForm() {
 
       <Script
         src="https://tally.so/widgets/embed.js"
-        // @ts-expect-error - Tally is not defined
         // onLoad={() => Tally.loadEmbeds()}
       />
     </div>

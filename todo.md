@@ -17,7 +17,6 @@
 
 ## To Implement
 
-- should we use '@supabase/supabase-js' in the client side for auth? or next-auth? <https://github.com/supabase/supabase-js/issues/1258>
 - select language from a list of languages
 - select an accent from a list
 - show microphone level indicator when call is active (<https://github.com/livekit/client-sdk-react-native/issues/183>)
