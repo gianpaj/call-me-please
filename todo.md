@@ -29,3 +29,7 @@
 
 - use `class-variance-authority` for Button component and similar
 - Snooze button in the notification
+
+## To research
+
+- ChatGPT traits (Chatty, Witty, Opinionated, Straight shooting, Encouraging, Poetic, etc.) <https://help.openai.com/en/articles/8096356-custom-instructions-for-chatgpt>

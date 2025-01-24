@@ -1,5 +1,6 @@
 // import "@bacons/text-decoder/install";
 
+import { Text, View } from "react-native";
 import { Link, Tabs } from "expo-router";
 
 // import { StatusBar } from "expo-status-bar";
@@ -9,6 +10,7 @@ import { FontAwesomeIcon, IonicIcon } from "~/components/icons";
 import { TRPCProvider } from "~/utils/api";
 
 export default function TabLayout() {
+  const creditsLeft = 5;
   return (
     <TRPCProvider>
       <Tabs
@@ -24,9 +26,14 @@ export default function TabLayout() {
               <FontAwesomeIcon name="phone" color={color} />
             ),
             headerRight: () => (
-              <Link href="/modal" asChild>
-                <HeaderButton />
-              </Link>
+              <View className="flex flex-row items-center">
+                <Text className="mr-2 text-sm text-gray-700 dark:text-gray-400">
+                  Credits:{creditsLeft}
+                </Text>
+                <Link href="/modal" asChild>
+                  <HeaderButton />
+                </Link>
+              </View>
             ),
           }}
         />
