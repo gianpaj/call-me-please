@@ -1,5 +1,9 @@
 # Call Me Please app
 
+<!-- Get Me Out Bed -->
+
+<img width="180" src="./apps/nextjs/public/logo.svg" />
+
 <https://call-me-pls.vercel.app>
 
 A mobile application that allows users to schedule AI voice phone calls using React Native and Expo.
@@ -19,7 +23,7 @@ Call Me Please is a mobile application that lets users schedule AI-powered voice
 - [ ] 🗣️ Choose from multiple AI voices
 - [ ] 📱 Schedule AI voice call alarms
 - [ ] 🔔 Push notifications for scheduled calls
-- [ ] 👤 User authentication with Google, Apple, Email + verification, and Twilio SMS verification
+- [ ] 👤 User authentication with Google, Apple, Email + verification, and Twilio SMS verification (using Supabase)
 
 ## Later
 
