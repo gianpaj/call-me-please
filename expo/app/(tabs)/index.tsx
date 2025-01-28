@@ -24,6 +24,7 @@ export default function Call() {
   const { shouldConnect, connect, disconnect, wsUrl, token } = useConnection();
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
   const [currentVoice, setVoice] = useState(VoiceId.ash);
+  const { creditsLeft, decreaseCreditsLeft } = useSessionStore();
 
   const playVoice = useCallback((voiceId: VoiceId) => {
     alert(`${voiceId} play`);
@@ -45,10 +46,15 @@ export default function Call() {
     if (shouldConnect) {
       disconnect();
     } else {
+      // if (creditsLeft <= 0) {
+      //   alert("You're out of credits!");
+      //   return;
+      // }
       setIsConnecting(true);
 
       try {
         await connect();
+        decreaseCreditsLeft();
       } catch (error) {
         console.error("Connection failed:", error);
       } finally {

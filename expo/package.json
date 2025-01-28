@@ -43,6 +43,7 @@
     "@trpc/server": "^11.0.0-rc.477",
     "expo": "^52.0.27",
     "expo-audio": "~0.3.1",
+    "expo-auth-session": "^6.0.2",
     "expo-constants": "~17.0.3",
     "expo-insights": "~0.8.1",
     "expo-linking": "~7.0.3",

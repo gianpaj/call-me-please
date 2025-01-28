@@ -1,10 +1,10 @@
-import type React from "react";
-import { createContext, useCallback, useContext, useState } from "react";
+import type React from 'react';
+import { createContext, useCallback, useContext, useState } from 'react';
 
-import type { LiveKitState } from "~/store/livekit-state";
-import { VoiceId } from "~/data/voices";
-import { defaultLiveKitState } from "~/store/livekit-state";
-import { useSessionStore } from "~/store/store";
+import type { LiveKitState } from '~/store/livekit-state';
+import { VoiceId } from '~/data/voices';
+import { defaultLiveKitState } from '~/store/livekit-state';
+import { useSessionStore } from '~/store/store';
 
 export type ConnectFn = () => Promise<void>;
 
@@ -19,36 +19,29 @@ interface TokenGeneratorData {
   connect: ConnectFn;
 }
 
-const ConnectionContext = createContext<TokenGeneratorData | undefined>(
-  undefined,
-);
+const ConnectionContext = createContext<TokenGeneratorData | undefined>(undefined);
 
-export const ConnectionProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const ConnectionProvider = ({ children }: { children: React.ReactNode }) => {
   const [connectionDetails, setConnectionDetails] = useState<{
     wsUrl: string;
     token: string;
     shouldConnect: boolean;
     voice: VoiceId;
-  }>({ wsUrl: "", token: "", shouldConnect: false, voice: VoiceId.echo });
+  }>({ wsUrl: '', token: '', shouldConnect: false, voice: VoiceId.echo });
 
   const instructions = useSessionStore((state) => state.instructions);
 
   const connect = async () => {
-    // FIXME: in production
-    const response = await fetch("http://localhost:3000/api/livekit-token", {
-      method: "POST",
+    const response = await fetch(`${process.env.EXPO_PUBLIC_API_SERVER}/api/livekit-token`, {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ instructions, ...defaultLiveKitState }),
     });
 
     if (!response.ok) {
-      throw new Error("Failed to fetch token");
+      throw new Error('Failed to fetch token');
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -83,8 +76,7 @@ export const ConnectionProvider = ({
         connect,
         disconnect,
         setVoice,
-      }}
-    >
+      }}>
       {children}
     </ConnectionContext.Provider>
   );
@@ -94,7 +86,7 @@ export const useConnection = () => {
   const context = useContext(ConnectionContext);
 
   if (context === undefined) {
-    throw new Error("useConnection must be used within a ConnectionProvider");
+    throw new Error('useConnection must be used within a ConnectionProvider');
   }
 
   return context;

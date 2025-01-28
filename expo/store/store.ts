@@ -3,6 +3,11 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 export interface SessionState {
+  sessionAccessToken: string | null;
+  setSessionAccessToken: (sessionAccessToken?: string) => void;
+  creditsLeft: number;
+  decreaseCreditsLeft: () => void;
+  setCreditsLeft: (creditsLeft: number) => void;
   instructions: string;
   setInstructions: (instructions: string) => void;
 }
@@ -12,6 +17,13 @@ export const useSessionStore = create<SessionState>(
   // @ts-ignore
   persist(
     (set) => ({
+      sessionAccessToken: null,
+      setSessionAccessToken: (sessionAccessToken) =>
+        set(() => ({ sessionAccessToken })),
+      creditsLeft: 5,
+      decreaseCreditsLeft: () =>
+        set((state) => ({ creditsLeft: state.creditsLeft - 1 })),
+      setCreditsLeft: (creditsLeft) => set(() => ({ creditsLeft })),
       instructions:
         "You’re Arnold Schwarzenegger's brother. You have a very heavy accent Austrian accent. It's a really thick accent. You’re a body builder and you just woke me up to go to the gym. Motivate me to get out of bed.",
       setInstructions: (instructions) => set(() => ({ instructions })),
