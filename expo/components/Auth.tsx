@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert, StyleSheet, View, AppState, Button } from "react-native";
-// import * as QueryParams from "expo-auth-session/build/QueryParams";
-// import { makeRedirectUri } from "expo-auth-session";
+import * as QueryParams from "expo-auth-session/build/QueryParams";
+import { makeRedirectUri } from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
 
 import { supabase } from "utils/supabase";
@@ -54,23 +54,24 @@ export default function Auth() {
     setLoading(false);
   }
   const createSessionFromUrl = async (url: string) => {
-    // const { params, errorCode } = QueryParams.getQueryParams(url);
-    // if (errorCode) throw new Error(errorCode);
-    // const { access_token, refresh_token } = params;
-    // if (!access_token) return;
-    // const { data, error } = await supabase.auth.setSession({
-    //   access_token,
-    //   refresh_token,
-    // });
-    // if (error) throw error;
-    // return data.session;
+    const { params, errorCode } = QueryParams.getQueryParams(url);
+    if (errorCode) throw new Error(errorCode);
+    const { access_token, refresh_token } = params;
+    if (!access_token) return;
+    const { data, error } = await supabase.auth.setSession({
+      access_token,
+      refresh_token,
+    });
+    if (error) throw error;
+    return data.session;
   };
 
   const performOAuth = async () => {
+    const redirectTo = makeRedirectUri();
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        // redirectTo,
+        redirectTo,
         skipBrowserRedirect: true,
       },
     });
@@ -79,7 +80,7 @@ export default function Auth() {
 
     const res = await WebBrowser.openAuthSessionAsync(
       data?.url ?? "",
-      // redirectTo
+      redirectTo,
     );
 
     if (res.type === "success") {
