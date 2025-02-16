@@ -1,4 +1,8 @@
-import { useTrackVolume, useVoiceAssistant } from "@livekit/components-react";
+import {
+  useLocalParticipant,
+  useTrackVolume,
+  useVoiceAssistant,
+} from "@livekit/components-react";
 import { useMultibandTrackVolume } from "@livekit/components-react";
 import { AudioSession, LiveKitRoom } from "@livekit/react-native";
 import { Stack, router } from "expo-router";
@@ -101,22 +105,15 @@ export default function Call() {
     });
   };
 
+  const onDeviceFailure = (e?: MediaDeviceFailure) => {
+    console.error(e);
+    // alert(
+    //   'Error acquiring camera or microphone permissions. Please make sure you grant the necessary permissions in your browser and reload the tab',
+    // );
+  };
+
   return (
     <>
-      <LiveKitRoom
-        serverUrl={wsUrl}
-        token={token}
-        connect={shouldConnect}
-        options={
-          {
-            // adaptiveStream: { pixelDensity: "screen" },
-            // publishDefaults: {
-            //   stopMicTrackOnMute: true,
-            // },
-          }
-        }
-        audio={true}
-      />
       <Stack.Screen options={{ title: "Call" }} />
       <ScrollView
         contentContainerClassName="flex-1 p-7 justify-center"
@@ -130,6 +127,23 @@ export default function Call() {
             playVoice={playVoice}
           />
         </View>
+        <LiveKitRoom
+          serverUrl={wsUrl}
+          token={token}
+          connect={shouldConnect}
+          options={
+            {
+              // adaptiveStream: { pixelDensity: "screen" },
+              // publishDefaults: {
+              //   stopMicTrackOnMute: true,
+              // },
+            }
+          }
+          onMediaDeviceFailure={onDeviceFailure}
+          audio={true}
+        >
+          <AudioVisualizer />
+        </LiveKitRoom>
         <Button
           disabled={isConnecting}
           title={

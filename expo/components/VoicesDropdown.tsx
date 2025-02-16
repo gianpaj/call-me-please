@@ -1,12 +1,12 @@
-import React, { useCallback, useReducer, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Dropdown } from "react-native-element-dropdown";
-import { useAudioPlayer } from "expo-audio";
 // import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { useAudioPlayer } from "expo-audio";
 import _assign from "lodash/assign";
 import _get from "lodash/get";
 import _isEqual from "lodash/isEqual";
+import React, { useCallback, useReducer, useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Dropdown } from "react-native-element-dropdown";
 
 import { VoiceId } from "~/data/voices";
 
@@ -156,7 +156,7 @@ const VoicesDropdown = ({
   };
 
   return (
-    <View className="py-5">
+    <View className="pt-5">
       {renderLabel()}
       <Dropdown
         style={styles.dropdown}
