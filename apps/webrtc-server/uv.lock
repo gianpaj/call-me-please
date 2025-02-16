@@ -1129,7 +1129,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "livekit", specifier = ">=0.18.3" },
-    { name = "livekit-agents", specifier = ">=0.12.8" },
+    { name = "livekit-agents", specifier = ">=0.12.11" },
     { name = "livekit-plugins-openai", specifier = ">=0.10.14" },
     { name = "livekit-plugins-playai", specifier = ">=1.0.7" },
     { name = "livekit-plugins-silero", specifier = ">=0.7.4" },

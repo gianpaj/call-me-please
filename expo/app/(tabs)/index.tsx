@@ -1,8 +1,12 @@
+import { useTrackVolume, useVoiceAssistant } from "@livekit/components-react";
+import { useMultibandTrackVolume } from "@livekit/components-react";
+import { AudioSession, LiveKitRoom } from "@livekit/react-native";
+import { Stack, router } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { ScrollView, Text, TextInput, View } from "react-native";
-import { router, Stack } from "expo-router";
-import { AudioSession, LiveKitRoom } from "@livekit/react-native";
 
+import type { MediaDeviceFailure } from "livekit-client";
+import { AudioVisualizer } from "~/components/AudioVisualizer";
 import { Button } from "~/components/Button";
 import VoicesDropdown from "~/components/VoicesDropdown";
 import { VoiceId } from "~/data/voices";
@@ -21,16 +25,23 @@ const voices = Object.values(VoiceId).map((voice) => ({
 }));
 
 export default function Call() {
-  const { shouldConnect, connect, disconnect, wsUrl, token } = useConnection();
+  const {
+    shouldConnect,
+    connect,
+    disconnect,
+    wsUrl,
+    token,
+    setVoice,
+    voice: currentVoice,
+  } = useConnection();
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
-  const [currentVoice, setVoice] = useState(VoiceId.ash);
   const { creditsLeft, decreaseCreditsLeft } = useSessionStore();
 
   const playVoice = useCallback((voiceId: VoiceId) => {
     alert(`${voiceId} play`);
   }, []);
 
-  // // Start the audio session first.
+  // Start the audio session first.
   useEffect(() => {
     const start = async () => {
       await AudioSession.startAudioSession();
@@ -96,12 +107,14 @@ export default function Call() {
         serverUrl={wsUrl}
         token={token}
         connect={shouldConnect}
-        options={{
-          adaptiveStream: { pixelDensity: "screen" },
-          // publishDefaults: {
-          //   stopMicTrackOnMute: true,
-          // },
-        }}
+        options={
+          {
+            // adaptiveStream: { pixelDensity: "screen" },
+            // publishDefaults: {
+            //   stopMicTrackOnMute: true,
+            // },
+          }
+        }
         audio={true}
       />
       <Stack.Screen options={{ title: "Call" }} />

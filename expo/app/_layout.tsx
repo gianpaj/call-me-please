@@ -1,6 +1,5 @@
 import "../global.css";
 
-import { Stack } from "expo-router";
 import {
   // AudioSession,
   // LiveKitRoom,
@@ -11,6 +10,7 @@ import {
   registerGlobals,
   setLogLevel,
 } from "@livekit/react-native";
+import { Stack } from "expo-router";
 import { LogLevel } from "livekit-client";
 
 import { ConnectionProvider } from "~/hooks/use-connection";

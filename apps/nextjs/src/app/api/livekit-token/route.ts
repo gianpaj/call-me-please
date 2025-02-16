@@ -9,17 +9,18 @@ import { env } from "~/env";
 export async function POST(request: Request) {
   // TODO: fix this
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let playgroundState: any;
-  // let playgroundState: LiveKitState;
+  let callConfig: any;
+  // let callConfig: LiveKitState;
 
   try {
-    playgroundState = await request.json();
+    callConfig = await request.json();
   } catch (error) {
     return Response.json(
       { error: "Invalid JSON in request body" },
       { status: 400 },
     );
   }
+  // TODO: use Zod to validate callConfig
 
   const {
     instructions,
@@ -33,7 +34,7 @@ export async function POST(request: Request) {
       vadSilenceDurationMs,
       vadPrefixPaddingMs,
     },
-  } = playgroundState;
+  } = callConfig;
 
   const roomName = Math.random().toString(36).slice(7);
   const apiKey = env.LIVEKIT_API_KEY;

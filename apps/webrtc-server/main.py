@@ -366,7 +366,7 @@ def prewarm_process(proc: JobProcess):
     proc.userdata["vad"] = silero.VAD.load()
 
 if __name__ == "__main__":
-    cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint,
+    cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint_old,
         prewarm_fnc=prewarm_process,
         # worker_type=WorkerType.ROOM
     ))
