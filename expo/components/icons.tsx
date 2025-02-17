@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { StyleSheet } from "react-native";
 
 export const FontAwesomeIcon = (props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
 
 export const IonicIcon = (props: {
   name: React.ComponentProps<typeof Ionicons>["name"];
-  color: string;
+  color?: string;
 }) => {
   return <Ionicons size={28} style={styles.icon} {...props} />;
 };

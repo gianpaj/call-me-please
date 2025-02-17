@@ -10,6 +10,7 @@ import {
   registerGlobals,
   setLogLevel,
 } from "@livekit/react-native";
+import { PortalHost } from "@rn-primitives/portal";
 import { Stack } from "expo-router";
 import { LogLevel } from "livekit-client";
 
@@ -40,6 +41,7 @@ export default function RootLayout() {
           options={{ title: "Info", presentation: "modal" }}
         />
       </Stack>
+      <PortalHost />
     </ConnectionProvider>
   );
 }

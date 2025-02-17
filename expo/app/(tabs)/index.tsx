@@ -1,18 +1,24 @@
-import {
-  useLocalParticipant,
-  useTrackVolume,
-  useVoiceAssistant,
-} from "@livekit/components-react";
 import { useMultibandTrackVolume } from "@livekit/components-react";
 import { AudioSession, LiveKitRoom } from "@livekit/react-native";
 import { Stack, router } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { ScrollView, Text, TextInput, View } from "react-native";
 
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import { Portal } from "@rn-primitives/portal";
 import type { MediaDeviceFailure } from "livekit-client";
 import { AudioVisualizer } from "~/components/AudioVisualizer";
 import { Button } from "~/components/Button";
+import { CallInfo } from "~/components/CallInfo";
 import VoicesDropdown from "~/components/VoicesDropdown";
+import {
+  Toast,
+  ToastAction,
+  ToastClose,
+  ToastDescription,
+  ToastTitle,
+} from "~/components/ui/toast";
 import { VoiceId } from "~/data/voices";
 import { useConnection } from "~/hooks/use-connection";
 import { useSessionStore } from "~/store/store";
@@ -112,6 +118,10 @@ export default function Call() {
     // );
   };
 
+  const insets = useSafeAreaInsets();
+
+  const [openToast, setOpenToast] = useState(false);
+
   return (
     <>
       <Stack.Screen options={{ title: "Call" }} />
@@ -142,6 +152,7 @@ export default function Call() {
           onMediaDeviceFailure={onDeviceFailure}
           audio={true}
         >
+          <CallInfo />
           <AudioVisualizer />
         </LiveKitRoom>
         <Button
@@ -178,6 +189,27 @@ export default function Call() {
           variant="secondary"
         />
       </ScrollView>
+      <Portal name="toast-example">
+        <View style={{ top: insets.top + 4 }} className="px-4 absolute w-full">
+          <Toast
+            type="foreground"
+            open={openToast}
+            variant="destructive"
+            onOpenChange={setOpenToast}
+          >
+            <View className="gap-1.5">
+              <ToastTitle variant="destructive">Here is a toast</ToastTitle>
+              <ToastDescription variant="destructive">
+                It will disappear in {"x"} seconds
+              </ToastDescription>
+            </View>
+            <View className="gap-2">
+              <ToastAction variant="destructive" text="Ok" />
+              {/* <ToastClose variant="destructive" /> */}
+            </View>
+          </Toast>
+        </View>
+      </Portal>
     </>
   );
 }
