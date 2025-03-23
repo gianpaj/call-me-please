@@ -5,11 +5,11 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-  "livekit-agents>=0.12.11",
-  "livekit-plugins-openai>=0.10.14",
-  "livekit-plugins-playai>=1.0.7",
-  "livekit-plugins-silero>=0.7.4",
-  "livekit-protocol>=0.8.0",
-  "livekit>=0.18.3",
+  "livekit-agents>=0.12.18",
+  "livekit-plugins-openai>=0.10.20",
+  "livekit-plugins-playai>=1.0.9",
+  "livekit-plugins-silero>=0.7.5",
+  "livekit-protocol>=0.9.2",
+  "livekit>=0.22.0",
   "python-dotenv==1.0.1",
 ]

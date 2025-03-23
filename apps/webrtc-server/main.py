@@ -14,7 +14,7 @@ from livekit.agents import (
     WorkerOptions,
     cli,
     llm,
-    JobProcess
+    JobProcess,
 )
 from livekit.agents.multimodal import MultimodalAgent
 from livekit.agents.pipeline import VoicePipelineAgent
@@ -26,6 +26,7 @@ load_dotenv()
 
 logger = logging.getLogger("my-worker")
 logger.setLevel(logging.INFO)
+
 
 @dataclass
 class SessionConfig:
@@ -39,7 +40,7 @@ class SessionConfig:
 
     def __post_init__(self):
         if self.modalities is None:
-            self.modalities = self._modalities_from_string("text_and_audio") # type: ignore
+            self.modalities = self._modalities_from_string("text_and_audio")  # type: ignore
 
     def to_dict(self):
         return {k: v for k, v in asdict(self).items() if k != "openai_api_key"}
@@ -74,7 +75,7 @@ def parse_session_config(data: Dict[str, Any]) -> SessionConfig:
         instructions=data.get("instructions", ""),
         voice=data.get("voice", "alloy"),
         temperature=float(data.get("temperature", 0.8)),
-        max_response_output_tokens=data.get("max_output_tokens") # by default is 'inf'
+        max_response_output_tokens=data.get("max_output_tokens")  # by default is 'inf'
         if data.get("max_output_tokens") == "inf"
         else int(data.get("max_output_tokens") or 2048),
         modalities=SessionConfig._modalities_from_string(
@@ -112,8 +113,13 @@ def run_multimodal_agent(ctx: JobContext, participant: rtc.Participant):
         temperature=config.temperature,
         model="gpt-4o-mini-realtime-preview",
         max_response_output_tokens=int(config.max_response_output_tokens),
+        # input_audio_transcription=InputTranscriptionOptions(
+        #     model=session["input_audio_transcription"]["model"],
+        #     language=session["input_audio_transcription"].get("language"),
+        #     prompt=session["input_audio_transcription"].get("prompt"),
+        # ),
         modalities=config.modalities,
-        turn_detection=config.turn_detection
+        turn_detection=config.turn_detection,
     )
     assistant = MultimodalAgent(model=model)
     assistant.start(ctx.room)
@@ -322,6 +328,7 @@ def run_multimodal_agent(ctx: JobContext, participant: rtc.Participant):
             )
             last_transcript_id = None
 
+
 async def entrypoint(ctx: JobContext):
     logger.info(f"connecting to room {ctx.room.name}")
     await ctx.connect(auto_subscribe=AutoSubscribe.AUDIO_ONLY)
@@ -339,7 +346,7 @@ async def entrypoint(ctx: JobContext):
         role="system",
     )
     agent = VoicePipelineAgent(
-        vad=ctx.proc.userdata["vad"], # there's a better one...
+        vad=ctx.proc.userdata["vad"],  # there's a better one...
         # stt=None,
         stt=openai.STT(),
         llm=openai.LLM(),
@@ -347,7 +354,7 @@ async def entrypoint(ctx: JobContext):
         tts=playai.TTS(
             # voice=os.environ.get('PLAYHT_VOICE'), # type: ignore
             # language=config.language
-            language='english',
+            language="english",
             model="Play3.0-mini-ws",
             # word_tokenizer
         ),
@@ -361,12 +368,17 @@ async def entrypoint(ctx: JobContext):
     #     "Hello from the weather station. Would you like to know the weather? If so, tell me your location."
     # )
 
+
 def prewarm_process(proc: JobProcess):
     # preload silero VAD in memory to speed up session start
     proc.userdata["vad"] = silero.VAD.load()
 
+
 if __name__ == "__main__":
-    cli.run_app(WorkerOptions(entrypoint_fnc=entrypoint_old,
-        prewarm_fnc=prewarm_process,
-        # worker_type=WorkerType.ROOM
-    ))
+    cli.run_app(
+        WorkerOptions(
+            entrypoint_fnc=entrypoint_old,
+            prewarm_fnc=prewarm_process,
+            # worker_type=WorkerType.ROOM
+        )
+    )
