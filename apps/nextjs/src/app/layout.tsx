@@ -1,6 +1,6 @@
-import type { Metadata, Viewport } from "next";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
+import type { Metadata, Viewport } from "next";
 
 import { cn } from "@acme/ui";
 import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
@@ -18,13 +18,11 @@ export const metadata: Metadata = {
       ? "https://call-me-pls.vercel.app"
       : "http://localhost:3000",
   ),
-  title:
-    "WakeCall - Schedule personalized AI voice calls with your favorite characters",
+  title: "WakeCall - Make AI voice calls with your favorite characters",
   description:
     "WakeCall: AI voice calls with Santa, Arnold & more! Easy scheduling, recurring calls. Make mornings exciting!",
   openGraph: {
-    title:
-      "WakeCall app - Schedule personalized AI voice calls with your favorite characters",
+    title: "WakeCall app - Make AI voice calls with your favorite characters",
     description:
       "WakeCall: AI voice calls with Santa, Arnold & more! Easy scheduling, recurring calls. Make mornings exciting!",
     url: "https://call-me-pls.vercel.app",

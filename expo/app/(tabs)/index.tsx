@@ -1,4 +1,4 @@
-import { useMultibandTrackVolume } from "@livekit/components-react";
+// import { useMultibandTrackVolume } from "@livekit/components-react";
 import { AudioSession, LiveKitRoom } from "@livekit/react-native";
 import { Stack, router } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
@@ -15,18 +15,18 @@ import VoicesDropdown from "~/components/VoicesDropdown";
 import {
   Toast,
   ToastAction,
-  ToastClose,
+  // ToastClose,
   ToastDescription,
   ToastTitle,
 } from "~/components/ui/toast";
 import { VoiceId } from "~/data/voices";
 import { useConnection } from "~/hooks/use-connection";
 import { useSessionStore } from "~/store/store";
-import {
-  requestPermissions,
-  scheduleNotification,
-  setNotificationHandler,
-} from "~/utils/permissions";
+// import {
+//   requestPermissions,
+//   scheduleNotification,
+//   setNotificationHandler,
+// } from "~/utils/permissions";
 
 // OpenAI voices - TODO: get list of users' voices from API
 const voices = Object.values(VoiceId).map((voice) => ({
@@ -85,31 +85,31 @@ export default function Call() {
   };
   const { instructions, setInstructions } = useSessionStore();
 
-  const handleScheduleCall = async () => {
-    try {
-      await requestPermissions();
-    } catch (error) {
-      // TO TEST: on a newly installed app, deny permissions
-      console.error("Error requesting permissions", error);
-      alert("Error requesting permissions. Please try again.");
-      return;
-    }
-    // First, set the handler that will cause the notification
-    // to show the alert
-    void setNotificationHandler(
-      (notificationId: string) =>
-        console.log("Notification handler set", notificationId),
-      (error) => console.error("Error setting notification handler", error),
-    );
-    const notification_title = "Good morning";
+  // const handleScheduleCall = async () => {
+  //   try {
+  //     await requestPermissions();
+  //   } catch (error) {
+  //     // TO TEST: on a newly installed app, deny permissions
+  //     console.error("Error requesting permissions", error);
+  //     alert("Error requesting permissions. Please try again.");
+  //     return;
+  //   }
+  //   // First, set the handler that will cause the notification
+  //   // to show the alert
+  //   void setNotificationHandler(
+  //     (notificationId: string) =>
+  //       console.log("Notification handler set", notificationId),
+  //     (error) => console.error("Error setting notification handler", error),
+  //   );
+  //   const notification_title = "Good morning";
 
-    await scheduleNotification({
-      content: {
-        title: notification_title,
-        body: "I'm proud of you. Now, let's get up and get going!",
-      },
-    });
-  };
+  //   await scheduleNotification({
+  //     content: {
+  //       title: notification_title,
+  //       body: "I'm proud of you. Now, let's get up and get going!",
+  //     },
+  //   });
+  // };
 
   const onDeviceFailure = (e?: MediaDeviceFailure) => {
     console.error(e);
@@ -170,7 +170,8 @@ export default function Call() {
           }
           onPress={handleConnectionToggle}
           variant="primary"
-          className={isConnecting || shouldConnect ? "bg-indigo-400" : ""}
+          size="large"
+          className={`${isConnecting || shouldConnect ? "bg-indigo-400" : ""}`}
         />
         <Text className="mt-4 text-lg font-bold">Instructions:</Text>
         <TextInput
@@ -181,13 +182,13 @@ export default function Call() {
         >
           {instructions}
         </TextInput>
-        <Button
+        {/* <Button
           title="Schedule WakeCall"
           onPress={handleScheduleCall}
           style={{ width: "60%" }}
           className="mx-auto mt-4 p-2"
           variant="secondary"
-        />
+        /> */}
       </ScrollView>
       <Portal name="toast-example">
         <View style={{ top: insets.top + 4 }} className="px-4 absolute w-full">

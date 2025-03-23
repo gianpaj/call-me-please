@@ -5,6 +5,8 @@ import { createJSONStorage, persist } from "zustand/middleware";
 export interface SessionState {
   sessionAccessToken: string | null;
   setSessionAccessToken: (sessionAccessToken?: string) => void;
+  apiKey: string | null;
+  setApiKey: (apiKey?: string) => void;
   creditsLeft: number;
   decreaseCreditsLeft: () => void;
   setCreditsLeft: (creditsLeft: number) => void;
@@ -18,6 +20,8 @@ export const useSessionStore = create<SessionState>(
   persist(
     (set) => ({
       sessionAccessToken: null,
+      apiKey: null,
+      setApiKey: (apiKey) => set(() => ({ apiKey })),
       setSessionAccessToken: (sessionAccessToken) =>
         set(() => ({ sessionAccessToken })),
       creditsLeft: 5,

@@ -5,7 +5,7 @@ function Hero() {
         Wake<span className="text-purple-600">Call</span> 📞🤖
       </h1>
       <p className="mx-auto max-w-2xl text-xl text-gray-600">
-        Schedule personalized AI voice calls with your favorite characters
+        Make AI voice calls with your favorite characters
       </p>
     </section>
   );

@@ -19,16 +19,14 @@
 
 - select language from a list of languages
 - select an accent from a list
-- show microphone level indicator when call is active (<https://github.com/livekit/client-sdk-react-native/issues/183>)
-  - show a circle that get's larger or smaller when AI's voice speaks
+- show a circle that get's larger or smaller when AI's voice speaks
 
 - keep call in background. something like `react-native-callkeep` but that works on Expo
   - <https://github.com/livekit/client-sdk-react-native?tab=readme-ov-file#background-processing> -> <https://github.com/Raja0sama/rn-foreground-service>
 
 ## nice to have
 
-- use `class-variance-authority` for Button component and similar
-- Snooze button in the notificatio
+- Snooze button in the notification
 - Krisp noice cancelling `@livekit/react-native-krisp-noise-filter`
 
 ## To research

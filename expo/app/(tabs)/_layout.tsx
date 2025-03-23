@@ -1,14 +1,14 @@
 // import "@bacons/text-decoder/install";
 
-import { Text, View } from "react-native";
+// import { Text, View } from "react-native";
 import { Link, Tabs } from "expo-router";
 import { useEffect, useState } from "react";
 
-import { HeaderButton } from "~/components/HeaderButton";
+// import { HeaderButton } from "~/components/HeaderButton";
 import { FontAwesomeIcon, IonicIcon } from "~/components/icons";
+import { useSessionStore } from "~/store/store";
 import { TRPCProvider } from "~/utils/api";
 import { supabase } from "~/utils/supabase";
-import { useSessionStore } from "~/store/store";
 
 export default function TabLayout() {
   const { creditsLeft, sessionAccessToken, setSessionAccessToken } =
@@ -43,16 +43,16 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => (
               <FontAwesomeIcon name="phone" color={color} />
             ),
-            headerRight: () => (
-              <View className="flex flex-row items-center">
-                <Text className="mr-2 text-sm text-gray-700 dark:text-gray-400">
-                  Credits left: {creditsLeft}
-                </Text>
-                <Link href="/modal" asChild>
-                  <HeaderButton />
-                </Link>
-              </View>
-            ),
+            // headerRight: () => (
+            //   <View className="flex flex-row items-center">
+            //     <Text className="mr-2 text-sm text-gray-700 dark:text-gray-400">
+            //       Credits left: {creditsLeft}
+            //     </Text>
+            //     <Link href="/modal" asChild>
+            //       <HeaderButton />
+            //     </Link>
+            //   </View>
+            // ),
           }}
         />
         {/* <Tabs.Screen
