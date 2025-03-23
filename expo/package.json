@@ -77,7 +77,7 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.26.0",
-    "@babel/runtime": "^7.26.0",
+    "@babel/runtime": "^7.26.10",
     "@types/babel__core": "^7.20.5",
     "@types/react": "~18.3.12",
     "eslint": "^9.12.0",
