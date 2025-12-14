@@ -1,14 +1,13 @@
+import { db } from "@acme/db/client";
+import { Account, Session, User } from "@acme/db/schema";
+// import { skipCSRFCheck } from "@auth/core";
+import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import type {
   DefaultSession,
   NextAuthConfig,
   Session as NextAuthSession,
 } from "next-auth";
-import { skipCSRFCheck } from "@auth/core";
-import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import Discord from "next-auth/providers/discord";
-
-import { db } from "@acme/db/client";
-import { Account, Session, User } from "@acme/db/schema";
 
 import { env } from "../env";
 
@@ -33,7 +32,7 @@ export const authConfig = {
   // In development, we need to skip checks to allow Expo to work
   ...(!isSecureContext
     ? {
-        skipCSRFCheck: skipCSRFCheck,
+        // skipCSRFCheck: skipCSRFCheck,
         trustHost: true,
       }
     : {}),
