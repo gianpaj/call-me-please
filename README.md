@@ -1,4 +1,4 @@
-# Call Me Please app
+# Call Me Please
 
 <!-- Get Me Out Bed -->
 
@@ -6,7 +6,8 @@
 
 <https://call-me-pls.vercel.app>
 
-A mobile application that allows users to schedule AI voice phone calls using React Native and Expo.
+An Expo application for on-demand AI voice conversations. Scheduled wake-up
+calls are the intended next product slice.
 
 ## Follow the development journey on YouTube Playlist
 
@@ -16,14 +17,23 @@ A mobile application that allows users to schedule AI voice phone calls using Re
 
 ## Overview
 
-Call Me Please is a mobile application that lets users schedule AI-powered voice calls. Users can select from various AI voices, set up recurring calls, and manage their call schedules through an intuitive interface.
+Call Me Please connects a React Native client to a Python LiveKit voice agent
+through a Next.js API. The current prototype supports on-demand in-app calls and
+voice selection; scheduling, recurring calls, and account-backed credits remain
+planned.
+
+## Project documentation
+
+- [Architecture and technical debt review](./docs/2026-08-18-architecture-review.md)
+- [Contributor and coding-agent guidance](./AGENTS.md)
 
 ## Features
 
-- [ ] 🗣️ Choose from multiple AI voices
+- [x] 🗣️ Choose from multiple AI voices
+- [x] 📞 Start an on-demand in-app AI voice call
 - [ ] 📱 Schedule AI voice call alarms
 - [ ] 🔔 Push notifications for scheduled calls
-- [ ] 👤 User authentication with Google, Apple, Email + verification, and Twilio SMS verification (using Supabase)
+- [ ] 👤 Add one production authentication flow
 
 ## Later
 
@@ -38,39 +48,67 @@ Once I spend $100 on OpenAI, then add Stripe integration for top-up credits.
 
 - **Frontend**: React Native with Expo
 - **AI Agent**: Python
-- **Backend**: Next.js
-- **Database**: Supabase
+- **Backend**: Next.js and tRPC
+- **Database**: PostgreSQL with Drizzle
 - **State Management**: Zustand
 - **API Communication**: tRPC
 - **ORM**: Drizzle
 - **UI Components**: NativeWind
-- **Internationalization**: i18next (TBD) <https://docs.expo.dev/guides/localization/>
+- **Internationalization**: Planned <https://docs.expo.dev/guides/localization/>
 
 ## Project Structure
 
 This is a Turborepo project with the following structure:
 
-- `/apps/expo` - React Native mobile app
+- `/expo` - React Native mobile app (currently outside the root workspace)
 - `/apps/nextjs` - Next.js Landing Page and API server (tRPC)
 - `/apps/auth-proxy` - OAuth proxy
-- `/apps/webrtc-server` - Python LiveKit server
+- `/apps/webrtc-server` - Python LiveKit worker
 - `/packages/api` - Shared API layer
 - `/packages/auth` - Authentication utilities
 - `/packages/ui` - Shared UI components
 - `/packages/db` - Database utilities
+- `/packages/validators` - Shared validation schemas
 
 ![Live Kit Diagram](./live-kit-diagram.svg)
 
 ## Getting Started
 
-1. Clone the repository
-2. Install dependencies:
+> [!WARNING]
+> This repository is a prototype. Address the P0 credential and session issues
+> in the [architecture review](./docs/2026-08-18-architecture-review.md) before
+> exposing the API publicly.
+
+1. Configure the environment files you need:
+
    ```bash
-   pnpm install
+   cp apps/nextjs/.env.example apps/nextjs/.env
+   cp apps/webrtc-server/.env.example apps/webrtc-server/.env
+   cp expo/.env.example expo/.env
    ```
-3. Set up environment variables (See `.env.example` files)
-4. Run the JS development servers:
+
+2. Install the root workspace:
+
    ```bash
+   pnpm install --frozen-lockfile
+   ```
+
+3. Install Expo separately. It is not yet part of the root workspace:
+
+   ```bash
+   cd expo
+   pnpm --ignore-workspace install --frozen-lockfile
+   cd ..
+   ```
+
+4. Start the root JavaScript services and Expo in separate terminals:
+
+   ```bash
+   pnpm dev
+   ```
+
+   ```bash
+   cd expo
    pnpm dev
    ```
 
@@ -78,22 +116,21 @@ This is a Turborepo project with the following structure:
 
 ```bash
 cd apps/webrtc-server
-uv .venv
-uv sync
+uv sync --frozen --no-dev
 ```
 
 ### Run Python WebRTC Server
 
 ```bash
 cd apps/webrtc-server
-python3 main.py dev
+uv run python main.py dev
 ```
 
 ## Download Turn-detection Voice model
 
 ```bash
 cd apps/webrtc-server
-python my_agent.py download-files
+uv run python main.py download-files
 ```
 
 <https://github.com/livekit/agents/tree/main/livekit-plugins/livekit-plugins-turn-detector>
@@ -111,7 +148,6 @@ python my_agent.py download-files
 - Landing page generated with [Bolt.new](https://bolt.new)
 - [Fly.io](https://fly.io) to deploy the Python WebRTC server
 
-
 ### App Publishing
 
 - <https://icon.kitchen> - for App Stores' icons
@@ -125,15 +161,11 @@ python my_agent.py download-files
 
 - [PlayHT Python module](https://github.com/playht/pyht)
 
--- ORIGINAL README BELOW --
+## Starter template reference
 
-> [!NOTE]
->
-> NextAuth setup now works for Expo app!
-
-> [!NOTE]
->
-> OAuth deployments are now working for preview deployments. Read [deployment guide](https://github.com/t3-oss/create-t3-turbo#auth-proxy) and [check out the source](./apps/auth-proxy) to learn more!
+The remaining upstream T3 Turbo notes are kept as historical reference. Some
+features are not active in this product; use the setup instructions above as
+the source of truth.
 
 ## Installation
 
@@ -213,9 +245,8 @@ To get it running, follow the steps below:
 # Install dependencies
 pnpm i
 
-# Configure environment variables
-# There is an `.env.example` in the root directory you can use for reference
-cp .env.example .env
+# Configure the Next.js environment from its checked-in example
+cp apps/nextjs/.env.example apps/nextjs/.env
 
 # Push the Drizzle schema to the database
 pnpm db:push
@@ -227,7 +258,7 @@ pnpm db:push
 
 1. Make sure you have XCode and XCommand Line Tools installed [as shown on expo docs](https://docs.expo.dev/workflow/ios-simulator).
 
-   > **NOTE:** If you just installed XCode, or if you have updated it, you need to open the simulator manually once. Run `npx expo start` from `apps/expo`, and then enter `I` to launch Expo Go. After the manual launch, you can run `pnpm dev` in the root directory.
+   > **NOTE:** If you just installed XCode, or if you have updated it, you need to open the simulator manually once. Run `npx expo start` from `expo`, and then enter `I` to launch Expo Go. After the manual launch, you can run `pnpm dev` in the root directory.
 
    ```diff
    +  "dev": "expo start --ios",
@@ -239,7 +270,7 @@ pnpm db:push
 
 1. Install Android Studio tools [as shown on expo docs](https://docs.expo.dev/workflow/android-studio-emulator).
 
-2. Change the `dev` script at `apps/expo/package.json` to open the Android emulator.
+2. Change the `dev` script at `expo/package.json` to open the Android emulator.
 
    ```diff
    +  "dev": "expo start --android",
@@ -339,7 +370,7 @@ Deploying your Expo application works slightly differently compared to Next.js o
    eas login
 
    # Configure your Expo app
-   cd apps/expo
+   cd expo
    eas build:configure
    ```
 
@@ -367,7 +398,7 @@ Deploying your Expo application works slightly differently compared to Next.js o
 
    ```bash
    # Add the `expo-updates` library to your Expo app
-   cd apps/expo
+   cd expo
    pnpm expo install expo-updates
 
    # Configure EAS Update
@@ -379,7 +410,7 @@ Deploying your Expo application works slightly differently compared to Next.js o
 8. Now that everything is ready for updates, let's create a new update for `production` builds. With the `--auto` flag, EAS Update uses your current git branch name and commit message for this update. See [How EAS Update works](https://docs.expo.dev/eas-update/how-eas-update-works/#publishing-an-update) for more information.
 
    ```bash
-   cd apps/expo
+   cd expo
    eas update --auto
    ```
 
